@@ -1,11 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { CAMPS } from "@/lib/camps-data";
 import type { CampType, Gender, Interest } from "@/lib/types";
 import { INTEREST_EMOJI, INTEREST_LABELS } from "@/lib/quiz";
 import { CampCard } from "@/components/CampCard";
+
+const CampsMap = dynamic(() => import("@/components/CampsMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center bg-pine-light text-ink-soft">
+      Loading map…
+    </div>
+  ),
+});
 
 const REGIONS = [
   { key: "all", label: "All regions" },
@@ -48,6 +58,7 @@ export function CampsExplorer() {
   const [gender, setGender] = useState<Gender | "all">("all");
   const [interest, setInterest] = useState<Interest | "all">("all");
   const [maxPrice, setMaxPrice] = useState<number>(20000);
+  const [view, setView] = useState<"grid" | "map">("grid");
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -138,12 +149,22 @@ export function CampsExplorer() {
       </div>
 
       {/* Results */}
-      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-ink-soft">
-        {filtered.length} camp{filtered.length === 1 ? "" : "s"}
-      </p>
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-semibold uppercase tracking-wider text-ink-soft">
+          {filtered.length} camp{filtered.length === 1 ? "" : "s"}
+        </p>
+        <div className="flex gap-2">
+          <Chip active={view === "grid"} onClick={() => setView("grid")}>▦ Grid</Chip>
+          <Chip active={view === "map"} onClick={() => setView("map")}>🗺️ Map</Chip>
+        </div>
+      </div>
       {filtered.length === 0 ? (
         <div className="mt-6 rounded-2xl border border-ink/10 bg-white p-10 text-center text-ink-soft">
           Nothing matches those filters — try loosening one.
+        </div>
+      ) : view === "map" ? (
+        <div className="isolate mt-4 h-[32rem] overflow-hidden rounded-2xl border border-ink/10 shadow-lift sm:h-[36rem]">
+          <CampsMap camps={filtered} />
         </div>
       ) : (
         <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
