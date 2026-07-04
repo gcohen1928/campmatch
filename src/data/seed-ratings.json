@@ -1,1 +1,286 @@
-{}
+{
+ "trails-end-camp": {
+  "rating": 4.7,
+  "reviewCount": 41
+ },
+ "camp-towanda": {
+  "rating": 4.9,
+  "reviewCount": 56
+ },
+ "camp-ihc": {
+  "rating": 4.8,
+  "reviewCount": 52
+ },
+ "lake-bryn-mawr-camp": {
+  "rating": 4.8,
+  "reviewCount": 44
+ },
+ "camp-wayne": {
+  "rating": 4.6,
+  "reviewCount": 38
+ },
+ "pine-forest-camp": {
+  "rating": 4.6,
+  "reviewCount": 33
+ },
+ "camp-canadensis": {
+  "rating": 4.7,
+  "reviewCount": 40
+ },
+ "camp-nock-a-mixon": {
+  "rating": 4.6,
+  "reviewCount": 30
+ },
+ "camp-lohikan": {
+  "rating": 4.4,
+  "reviewCount": 62
+ },
+ "camp-weequahic": {
+  "rating": 4.8,
+  "reviewCount": 45
+ },
+ "camp-starlight": {
+  "rating": 4.8,
+  "reviewCount": 47
+ },
+ "camp-ramah-poconos": {
+  "rating": 4.5,
+  "reviewCount": 36
+ },
+ "camp-morasha": {
+  "rating": 4.7,
+  "reviewCount": 34
+ },
+ "camp-harlam": {
+  "rating": 4.6,
+  "reviewCount": 42
+ },
+ "woodward-pa": {
+  "rating": 4.8,
+  "reviewCount": 68
+ },
+ "independent-lake-camp": {
+  "rating": 4.6,
+  "reviewCount": 37
+ },
+ "summit-camp": {
+  "rating": 4.7,
+  "reviewCount": 39
+ },
+ "camp-lee-mar": {
+  "rating": 4.8,
+  "reviewCount": 28
+ },
+ "timber-lake-camp": {
+  "rating": 4.7,
+  "reviewCount": 46
+ },
+ "camp-schodack": {
+  "rating": 4.8,
+  "reviewCount": 35
+ },
+ "brant-lake-camp": {
+  "rating": 4.8,
+  "reviewCount": 38
+ },
+ "point-o-pines": {
+  "rating": 4.9,
+  "reviewCount": 32
+ },
+ "raquette-lake-camps": {
+  "rating": 4.7,
+  "reviewCount": 27
+ },
+ "camp-echo-lake": {
+  "rating": 4.8,
+  "reviewCount": 49
+ },
+ "french-woods": {
+  "rating": 4.6,
+  "reviewCount": 71
+ },
+ "long-lake-camp-arts": {
+  "rating": 4.3,
+  "reviewCount": 26
+ },
+ "camp-ramah-berkshires": {
+  "rating": 4.5,
+  "reviewCount": 31
+ },
+ "camp-dudley": {
+  "rating": 4.9,
+  "reviewCount": 43
+ },
+ "camp-takajo": {
+  "rating": 4.8,
+  "reviewCount": 48
+ },
+ "camp-vega": {
+  "rating": 4.8,
+  "reviewCount": 42
+ },
+ "tripp-lake-camp": {
+  "rating": 4.8,
+  "reviewCount": 36
+ },
+ "camp-laurel": {
+  "rating": 4.7,
+  "reviewCount": 44
+ },
+ "camp-manitou": {
+  "rating": 4.8,
+  "reviewCount": 39
+ },
+ "camp-skylemar": {
+  "rating": 4.8,
+  "reviewCount": 34
+ },
+ "camp-matoaka": {
+  "rating": 4.7,
+  "reviewCount": 37
+ },
+ "camp-modin": {
+  "rating": 4.7,
+  "reviewCount": 33
+ },
+ "camp-winnebago": {
+  "rating": 4.9,
+  "reviewCount": 29
+ },
+ "camp-winadu": {
+  "rating": 4.7,
+  "reviewCount": 45
+ },
+ "camp-danbee": {
+  "rating": 4.7,
+  "reviewCount": 40
+ },
+ "camp-greylock": {
+  "rating": 4.7,
+  "reviewCount": 43
+ },
+ "camp-romaca": {
+  "rating": 4.7,
+  "reviewCount": 26
+ },
+ "camp-watitoh": {
+  "rating": 4.6,
+  "reviewCount": 28
+ },
+ "camp-walt-whitman": {
+  "rating": 4.8,
+  "reviewCount": 41
+ },
+ "camp-wicosuta": {
+  "rating": 4.7,
+  "reviewCount": 38
+ },
+ "camp-tecumseh-nh": {
+  "rating": 4.9,
+  "reviewCount": 30
+ },
+ "urj-eisner-camp": {
+  "rating": 4.6,
+  "reviewCount": 39
+ },
+ "camp-longhorn": {
+  "rating": 4.8,
+  "reviewCount": 64
+ },
+ "camp-champions": {
+  "rating": 4.8,
+  "reviewCount": 47
+ },
+ "camp-ozark": {
+  "rating": 4.6,
+  "reviewCount": 58
+ },
+ "falling-creek-camp": {
+  "rating": 4.8,
+  "reviewCount": 36
+ },
+ "rockbrook-camp": {
+  "rating": 4.8,
+  "reviewCount": 34
+ },
+ "camp-greystone": {
+  "rating": 4.9,
+  "reviewCount": 55
+ },
+ "camp-highlander": {
+  "rating": 4.5,
+  "reviewCount": 29
+ },
+ "interlochen-arts-camp": {
+  "rating": 4.7,
+  "reviewCount": 77
+ },
+ "camp-foley": {
+  "rating": 4.7,
+  "reviewCount": 32
+ },
+ "cheley-colorado-camps": {
+  "rating": 4.8,
+  "reviewCount": 46
+ },
+ "gold-arrow-camp": {
+  "rating": 4.8,
+  "reviewCount": 44
+ },
+ "catalina-island-camps": {
+  "rating": 4.6,
+  "reviewCount": 31
+ },
+ "ymca-camp-orkila": {
+  "rating": 4.5,
+  "reviewCount": 53
+ },
+ "willow-lake-day-camp": {
+  "rating": 4.6,
+  "reviewCount": 48
+ },
+ "spring-lake-day-camp": {
+  "rating": 4.7,
+  "reviewCount": 52
+ },
+ "camp-riverbend": {
+  "rating": 4.7,
+  "reviewCount": 44
+ },
+ "harbor-hills-day-camp": {
+  "rating": 4.6,
+  "reviewCount": 36
+ },
+ "camp-deeny-riback": {
+  "rating": 4.5,
+  "reviewCount": 33
+ },
+ "rambling-pines-day-camp": {
+  "rating": 4.5,
+  "reviewCount": 38
+ },
+ "breezemont-day-camp": {
+  "rating": 4.4,
+  "reviewCount": 57
+ },
+ "deerkill-day-camp": {
+  "rating": 4.7,
+  "reviewCount": 35
+ },
+ "gate-hill-day-camp": {
+  "rating": 4.6,
+  "reviewCount": 39
+ },
+ "galileo-camps": {
+  "rating": 4.4,
+  "reviewCount": 66
+ },
+ "steve-and-kates-camp": {
+  "rating": 4.3,
+  "reviewCount": 59
+ },
+ "oasis-day-camp-central-park": {
+  "rating": 4.2,
+  "reviewCount": 45
+ }
+}

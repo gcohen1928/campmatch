@@ -111,9 +111,24 @@ async function main() {
     process.exit(1);
   }
 
-  const files = (await readdir(batchesDir)).filter(
-    (f) => f.startsWith("batch-") && f.endsWith(".json"),
-  ).sort();
+  // Recursively collect every JSON batch/fragment under the dir. Completed
+  // agents write batch-*.json; agents cut off early leave fragment files
+  // (top level and in parts*/ subdirs). Dedup by name+state makes feeding
+  // all of them safe. seed-reviews.json is handled separately below.
+  const IGNORE = new Set([
+    "seed-reviews.json", "camps.extra.json", "reviews.json", "seed-ratings.json",
+  ]);
+  async function walk(dir: string): Promise<string[]> {
+    const entries = await readdir(dir, { withFileTypes: true });
+    const out: string[] = [];
+    for (const e of entries) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) out.push(...(await walk(full)));
+      else if (e.name.endsWith(".json") && !IGNORE.has(e.name)) out.push(full);
+    }
+    return out;
+  }
+  const files = (await walk(batchesDir)).sort();
 
   const seenSlug = new Set(SEED_CAMPS.map((c) => c.slug));
   const seenName = new Set(SEED_CAMPS.map((c) => nameKey(c.name, c.state)));
@@ -124,9 +139,10 @@ async function main() {
   let dupes = 0;
 
   for (const file of files) {
+    // `file` is already an absolute path from walk().
     let records: unknown;
     try {
-      records = JSON.parse(await readFile(join(batchesDir, file), "utf8"));
+      records = JSON.parse(await readFile(file, "utf8"));
     } catch (e) {
       console.error(`✗ ${file}: unparseable JSON — skipped (${e})`);
       continue;
