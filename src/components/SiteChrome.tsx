@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Logo } from "./Logo";
+import { LogoMark } from "./Logo";
 
 const NAV = [
-  { href: "/quiz", label: "Take the quiz" },
+  { href: "/quiz", label: "The quiz" },
   { href: "/camps", label: "Browse camps" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/for-camps", label: "For camps" },
@@ -17,32 +17,37 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" aria-label="CampMatch home">
-          <Logo />
+    <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur">
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 py-4 sm:px-6 lg:px-12">
+        <Link
+          href="/"
+          aria-label="CampMatch home"
+          className="flex items-center gap-2 font-display text-[23px] font-semibold text-ink"
+        >
+          <LogoMark className="h-8 w-8 text-pine" />
+          CampMatch
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1.5 rounded-full border border-ink/12 bg-white p-1.5 text-[13.5px] font-medium md:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-full px-[18px] py-[9px] transition-colors ${
                 pathname.startsWith(item.href)
-                  ? "bg-pine text-cream"
-                  : "text-ink-soft hover:bg-pine-light hover:text-pine"
+                  ? "bg-cream text-ink"
+                  : "text-ink hover:bg-cream/70"
               }`}
             >
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/quiz"
-            className="ml-3 rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-white shadow-lift transition hover:bg-ember-deep"
-          >
-            Find my camp
-          </Link>
         </nav>
+        <Link
+          href="/quiz"
+          className="hidden rounded-full bg-ember px-[26px] py-[13px] text-sm font-semibold text-white transition-colors hover:bg-pine md:block"
+        >
+          Find my camp →
+        </Link>
         <button
           className="rounded-lg p-2 text-pine md:hidden"
           onClick={() => setOpen(!open)}
@@ -72,36 +77,29 @@ export function Header() {
   );
 }
 
+const FOOTER_LINKS = [
+  { href: "/quiz", label: "Take the quiz" },
+  { href: "/camps", label: "Browse camps" },
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/for-camps", label: "Claim your camp" },
+  { href: "/admin", label: "Admin" },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-ink/10 bg-pine-deep text-cream">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <Logo light />
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream/70">
-            Match.com for summer camps. Tell us about your kid, and we&apos;ll
-            match them with the sleepaway or day camps where they&apos;ll thrive.
-          </p>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-cream/60">Parents</h3>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link href="/quiz" className="hover:text-gold">Take the match quiz</Link></li>
-            <li><Link href="/camps" className="hover:text-gold">Browse all camps</Link></li>
-            <li><Link href="/how-it-works" className="hover:text-gold">How matching works</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-cream/60">Camps</h3>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link href="/for-camps" className="hover:text-gold">Claim your camp</Link></li>
-            <li><Link href="/for-camps#create" className="hover:text-gold">Add a new listing</Link></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-cream/10 py-5 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} CampMatch. Camp details are compiled estimates until verified by the camp.{" "}
-        <Link href="/admin" className="hover:text-gold">Admin</Link>
+    <footer className="border-t border-ink/12">
+      <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-5 px-4 py-10 sm:flex-row sm:px-6 lg:px-12">
+        <Link href="/" className="flex items-center gap-2 font-display text-[19px] font-semibold text-ink">
+          <LogoMark className="h-6 w-6 text-pine" />
+          CampMatch
+        </Link>
+        <nav className="flex flex-wrap justify-center gap-x-[30px] gap-y-2 text-[13.5px] text-ink/65">
+          {FOOTER_LINKS.map((item) => (
+            <Link key={item.href} href={item.href} className="transition-colors hover:text-ink">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </footer>
   );
