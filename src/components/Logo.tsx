@@ -6,7 +6,7 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
       {/* heart doorway */}
       <path
         d="M24 27.5c1.1-2.2 4.4-2.1 4.4.6 0 1.9-2.6 4.3-4.4 5.6-1.8-1.3-4.4-3.7-4.4-5.6 0-2.7 3.3-2.8 4.4-.6Z"
-        fill="#f2b84b"
+        fill="#e4a93c"
       />
     </svg>
   );

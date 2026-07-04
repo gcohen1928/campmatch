@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Newsreader, Archivo } from "next/font/google";
 import { Header, Footer } from "@/components/SiteChrome";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["SOFT", "WONK", "opsz"],
+  variable: "--font-newsreader",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${newsreader.variable} ${archivo.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>

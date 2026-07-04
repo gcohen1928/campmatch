@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* CampMatch palette — warm summer-camp editorial */
-  --color-cream: #fbf7ef;
-  --color-cream-dark: #f3ecdd;
-  --color-ink: #22301f;
-  --color-ink-soft: #55614f;
-  --color-pine: #1e4d3a;
-  --color-pine-deep: #143526;
-  --color-pine-light: #eaf2ea;
-  --color-ember: #e96d3f;
-  --color-ember-deep: #c9532a;
-  --color-gold: #f2b84b;
+  /* CampMatch palette — direction 1c "Warm Graphic Remix" */
+  --color-cream: #f7f1e4;
+  --color-cream-dark: #efe5d0;
+  --color-ink: #1e3b2c;
+  --color-ink-soft: #697b6c;
+  --color-pine: #1e3b2c;
+  --color-pine-deep: #152b20;
+  --color-pine-light: #e7efe4;
+  --color-ember: #de6b48;
+  --color-ember-deep: #c5532c;
+  --color-gold: #e4a93c;
   --color-sky: #8ecbc2;
   --color-sky-deep: #3f8f84;
 
-  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-lift: 0 1px 2px rgb(34 48 31 / 0.06), 0 8px 24px -8px rgb(34 48 31 / 0.14);
-  --shadow-lift-lg: 0 2px 4px rgb(34 48 31 / 0.06), 0 20px 44px -12px rgb(34 48 31 / 0.22);
+  --shadow-lift: 0 6px 24px rgb(30 59 44 / 0.08);
+  --shadow-lift-lg: 0 20px 50px rgb(30 59 44 / 0.18);
 }
 
 html {

@@ -1,179 +1,263 @@
 import Link from "next/link";
 import { CAMPS } from "@/lib/camps-data";
-import { CampCard } from "@/components/CampCard";
-import { LogoMark } from "@/components/Logo";
+import { CampArt } from "@/components/CampArt";
+import { GENDER_LABELS } from "@/lib/quiz";
+import type { Camp } from "@/lib/types";
 
-const FEATURED_SLUGS = [
-  "camp-ihc",
-  "willow-lake-day-camp",
-  "camp-vega",
-  "french-woods",
-  "camp-manitou",
-  "spring-lake-day-camp",
-];
+function money(n: number) {
+  return `$${Math.round(n / 100) / 10}k`.replace(".0k", "k");
+}
 
 const STEPS = [
   {
-    emoji: "📝",
     title: "Tell us about your kid",
-    body: "A 3-minute questionnaire about their personality, interests, social style — and your logistics: budget, distance, session length.",
+    body: "Personality, interests, social style — plus budget, distance and session length. Three minutes flat.",
   },
   {
-    emoji: "💘",
     title: "We play matchmaker",
-    body: "Our matching engine scores every camp in our database across a dozen compatibility dimensions, the way a dating app scores profiles.",
+    body: "Every camp scored across a dozen compatibility dimensions — the way a dating app scores profiles.",
   },
   {
-    emoji: "🏕️",
     title: "Meet your matches",
-    body: "A ranked list with match percentages and plain-English reasons why each camp fits — plus honest flags where it might not.",
+    body: "A ranked list with match percentages, plain-English reasons — and honest flags where it might not fit.",
   },
 ];
 
+const DIMENSIONS: { label: string; style?: string }[] = [
+  { label: "Personality & social style" },
+  { label: "Interests & passions", style: "bg-pine text-cream" },
+  { label: "Competitive vs. laid-back" },
+  { label: "Rustic vs. modern" },
+  { label: "Camp size", style: "bg-ember text-white" },
+  { label: "Session length" },
+  { label: "Distance from home" },
+  { label: "Budget", style: "bg-gold text-ink" },
+  { label: "Co-ed vs. single gender" },
+  { label: "First-time camper support" },
+];
+
+// Presentational match percentages + short names + one-line blurbs for the
+// featured cards, per the landing design; real scores come from the quiz flow.
+const FEATURED: { slug: string; name: string; match: number; blurb: string }[] = [
+  {
+    slug: "camp-vega",
+    name: "Camp Vega",
+    match: 96,
+    blurb: "A premier all-girls camp on Echo Lake with world-class waterskiing and riding.",
+  },
+  {
+    slug: "french-woods",
+    name: "French Woods",
+    match: 91,
+    blurb: "The best-known performing-arts camp — full musical productions every three weeks.",
+  },
+  {
+    slug: "camp-ihc",
+    name: "Camp IHC",
+    match: 89,
+    blurb: "A design-forward Poconos camp with a huge following and gorgeous grounds.",
+  },
+];
+
+function FeaturedCampCard({
+  camp,
+  name,
+  match,
+  blurb,
+}: {
+  camp: Camp;
+  name: string;
+  match: number;
+  blurb: string;
+}) {
+  return (
+    <Link
+      href={`/camps/${camp.slug}`}
+      className="block overflow-hidden rounded-[24px] bg-white shadow-lift transition hover:-translate-y-1 hover:shadow-lift-lg"
+    >
+      <div className="relative h-[250px]">
+        <CampArt camp={camp} className="h-full w-full" />
+        <span className="absolute right-4 top-4 rounded-full bg-ember px-4 py-2 text-[13px] font-bold text-white">
+          {match}% match
+        </span>
+      </div>
+      <div className="px-[26px] pb-7 pt-6">
+        <div className="mb-2 flex items-baseline justify-between gap-3">
+          <span className="font-display text-[23px] font-semibold">{name}</span>
+          <span className="shrink-0 text-[13px] text-ink/55">
+            {money(camp.tuitionMin)}–{money(camp.tuitionMax)}
+          </span>
+        </div>
+        <div className="mb-3 text-[13px] text-ink/60">
+          {camp.city}, {camp.state} · {GENDER_LABELS[camp.gender]} · Ages {camp.ageMin}–{camp.ageMax}
+        </div>
+        <p className="text-sm leading-[1.6] text-ink/70">{blurb}</p>
+      </div>
+    </Link>
+  );
+}
+
 export default function Home() {
-  const featured = FEATURED_SLUGS.map((s) => CAMPS.find((c) => c.slug === s)!).filter(Boolean);
+  const featured = FEATURED.map((f) => ({
+    ...f,
+    camp: CAMPS.find((c) => c.slug === f.slug),
+  })).filter((f): f is typeof f & { camp: Camp } => Boolean(f.camp));
+  const heroCamp = featured[0]?.camp;
   const sleepaway = CAMPS.filter((c) => c.type === "sleepaway").length;
   const day = CAMPS.filter((c) => c.type === "day").length;
 
   return (
     <>
       {/* Hero */}
-      <section className="grain relative overflow-hidden bg-pine-deep text-cream">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-sky-deep/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-ember/25 blur-3xl" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
-          <div className="max-w-2xl animate-rise">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/10 px-4 py-1.5 text-sm font-medium text-cream/90">
-              <LogoMark className="h-4 w-4 text-gold" />
-              Match.com for summer camps
-            </p>
-            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
-              Find the camp your kid was{" "}
-              <span className="text-gold">made for.</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/80">
-              There are thousands of sleepaway and day camps in America, and
-              exactly one that&apos;s perfect for your child. Take our
-              personality quiz and we&apos;ll introduce you — with a match
-              percentage and the reasons why.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/quiz"
-                className="rounded-full bg-ember px-7 py-3.5 text-base font-semibold text-white shadow-lift-lg transition hover:bg-ember-deep"
-              >
-                Take the 3-minute quiz →
-              </Link>
-              <Link
-                href="/camps"
-                className="rounded-full border border-cream/25 px-7 py-3.5 text-base font-semibold text-cream transition hover:bg-cream/10"
-              >
-                Browse camps
-              </Link>
-            </div>
-            <p className="mt-6 text-sm text-cream/60">
-              {sleepaway} sleepaway camps · {day} day camps · growing weekly · free for parents
-            </p>
+      <section className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 pb-16 pt-10 sm:px-6 lg:px-12 lg:grid-cols-[1.15fr_1fr] lg:pb-22 lg:pt-16">
+        <div className="animate-rise">
+          <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/12 bg-white px-[18px] py-2 text-[13px] font-semibold">
+            <span className="h-2 w-2 rounded-full bg-ember" aria-hidden />
+            Match.com for summer camps
+          </p>
+          <h1 className="mb-7 font-display text-[44px] font-medium leading-[1.04] tracking-[-0.02em] sm:text-[56px] lg:text-[72px]">
+            Find the camp your kid was <span className="italic text-ember">made for.</span>
+          </h1>
+          <p className="mb-9 max-w-[480px] text-[17.5px] leading-[1.65] text-ink/75">
+            Take the 3-minute personality quiz and meet your matches — with a
+            percentage, and the honest reasons why.
+          </p>
+          <div className="flex flex-wrap items-center gap-3.5">
+            <Link
+              href="/quiz"
+              className="rounded-full bg-pine px-[34px] py-[19px] text-[15px] font-semibold text-cream shadow-[0_12px_28px_rgba(30,59,44,0.28)] transition-colors hover:bg-ember"
+            >
+              Take the 3-minute quiz →
+            </Link>
+            <Link
+              href="/camps"
+              className="rounded-full border-[1.5px] border-ink/25 px-[30px] py-[19px] text-[15px] font-semibold transition-colors hover:border-ink/50"
+            >
+              Browse camps
+            </Link>
           </div>
-        </div>
-        <svg viewBox="0 0 1440 70" className="block w-full text-cream" preserveAspectRatio="none" aria-hidden>
-          <path d="M0 70 L360 18 L720 54 L1080 8 L1440 44 V70 Z" fill="currentColor" />
-        </svg>
-      </section>
-
-      {/* How it works */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Dating-app matching. Camp-mom wisdom.
-          </h2>
-          <p className="mt-3 text-lg text-ink-soft">
-            We built CampMatch after spending two summers trying to figure out
-            which camps were right for our own daughters. Never again.
+          <p className="mt-7 text-[13px] text-ink/55">
+            {sleepaway} sleepaway camps · {day} day camps · free for parents
           </p>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {STEPS.map((s, i) => (
-            <div
-              key={s.title}
-              className="animate-rise rounded-2xl border border-ink/10 bg-white p-7 shadow-lift"
-              style={{ animationDelay: `${i * 120}ms` }}
-            >
-              <div className="text-4xl">{s.emoji}</div>
-              <h3 className="mt-4 text-xl font-semibold text-pine">{i + 1}. {s.title}</h3>
-              <p className="mt-2 leading-relaxed text-ink-soft">{s.body}</p>
+        <div className="relative h-[420px] animate-rise sm:h-[560px]" style={{ animationDelay: "120ms" }}>
+          {heroCamp && (
+            <div className="absolute right-0 top-0 h-[75%] w-[88%] overflow-hidden rounded-[28px] sm:h-[480px]">
+              <CampArt camp={heroCamp} className="h-full w-full" />
             </div>
-          ))}
+          )}
+          <div className="absolute bottom-0 left-0 w-[280px] rounded-[20px] bg-white p-[22px] px-[26px] shadow-lift-lg">
+            <div className="mb-3 flex items-baseline justify-between">
+              <span className="font-display text-[19px] font-semibold">Camp Vega</span>
+              <span className="font-display text-[28px] text-ember">96%</span>
+            </div>
+            <div className="mb-3 h-[7px] rounded-full bg-ink/10">
+              <div
+                className="h-full w-[96%] rounded-full"
+                style={{ background: "linear-gradient(90deg, #de6b48, #e4a93c)" }}
+              />
+            </div>
+            <p className="text-[13px] leading-[1.5] text-ink/70">
+              &ldquo;Loves the water, thrives in all-girls settings, ready for 7 weeks.&rdquo;
+            </p>
+          </div>
+          <div className="absolute -left-2 top-9 rounded-full bg-pine px-[22px] py-3 text-[13.5px] font-semibold text-cream shadow-[0_12px_30px_rgba(30,59,44,0.3)]">
+            It&apos;s a match ✦
+          </div>
         </div>
       </section>
 
-      {/* What we match on */}
-      <section className="border-y border-ink/10 bg-cream-dark/60">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <h2 className="text-center text-2xl font-semibold text-ink sm:text-3xl">
-            We match on the things that actually matter
-          </h2>
-          <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2.5">
-            {[
-              "Personality & social style",
-              "Interests & passions",
-              "Competitive vs. laid-back",
-              "Structured vs. free choice",
-              "Rustic vs. modern",
-              "Camp size",
-              "Session length",
-              "Distance from home",
-              "Budget",
-              "Co-ed vs. single gender",
-              "Religious & cultural fit",
-              "First-time camper support",
-              "Allergy & learning support",
-            ].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-pine/20 bg-white px-4 py-2 text-sm font-medium text-pine"
-              >
-                {t}
-              </span>
-            ))}
+      {/* How it works — coral band */}
+      <section id="how-it-works" className="bg-ember py-20 text-white">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-12">
+          <div className="mb-14 flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
+            <h2 className="font-display text-[32px] font-medium sm:text-[46px]">
+              Dating-app matching. Camp-mom wisdom.
+            </h2>
+            <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+              How it works
+            </span>
           </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {STEPS.map((step, i) => {
+              const accent = i === STEPS.length - 1;
+              return (
+                <div
+                  key={step.title}
+                  className={`rounded-[24px] px-8 py-9 ${accent ? "bg-pine" : "bg-white/12"}`}
+                >
+                  <div
+                    className={`mb-6 flex h-11 w-11 items-center justify-center rounded-full font-display text-xl font-semibold ${
+                      accent ? "bg-gold text-pine" : "bg-white text-ember"
+                    }`}
+                  >
+                    {i + 1}
+                  </div>
+                  <h3 className="mb-3 font-display text-[25px] font-medium">{step.title}</h3>
+                  <p className={`text-[15px] leading-[1.65] ${accent ? "text-cream/85" : "text-white/85"}`}>
+                    {step.body}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Match dimensions */}
+      <section className="mx-auto max-w-[1240px] px-4 py-20 text-center sm:px-6 lg:px-12">
+        <h2 className="mb-10 font-display text-[32px] font-medium sm:text-[42px]">
+          We match on the things that <span className="italic text-ember">actually matter</span>
+        </h2>
+        <div className="mx-auto flex max-w-[900px] flex-wrap justify-center gap-3">
+          {DIMENSIONS.map((d) => (
+            <span
+              key={d.label}
+              className={`rounded-full px-6 py-[13px] text-[14.5px] font-medium ${
+                d.style ?? "border border-ink/14 bg-white"
+              }`}
+            >
+              {d.label}
+            </span>
+          ))}
         </div>
       </section>
 
       {/* Featured camps */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-ink">Camps on CampMatch</h2>
-            <p className="mt-2 text-ink-soft">From full-summer Maine classics to North Jersey day camps.</p>
-          </div>
-          <Link href="/camps" className="hidden shrink-0 font-semibold text-ember hover:text-ember-deep sm:block">
-            See all →
+      <section className="mx-auto max-w-[1240px] px-4 pb-22 pt-4 sm:px-6 lg:px-12">
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <h2 className="font-display text-[32px] font-medium sm:text-[42px]">Camps on CampMatch</h2>
+          <Link
+            href="/camps"
+            className="self-start rounded-full border border-ink/14 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-cream-dark"
+          >
+            See all {CAMPS.length} →
           </Link>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((camp) => (
-            <CampCard key={camp.slug} camp={camp} />
+        <div className="grid gap-6 md:grid-cols-3">
+          {featured.map((f) => (
+            <FeaturedCampCard key={f.slug} camp={f.camp} name={f.name} match={f.match} blurb={f.blurb} />
           ))}
         </div>
       </section>
 
-      {/* For camps CTA */}
-      <section className="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
-        <div className="grain relative overflow-hidden rounded-3xl bg-pine px-8 py-12 text-cream sm:px-12">
-          <div className="relative max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-tight">Run a camp?</h2>
-            <p className="mt-3 text-lg text-cream/80">
-              Claim your free listing, verify your details, and get introduced
-              to the families your camp was built for.
+      {/* CTA */}
+      <section className="mx-auto max-w-[1240px] px-4 pb-22 sm:px-6 lg:px-12">
+        <div className="flex flex-col items-start justify-between gap-8 rounded-[32px] bg-pine px-8 py-14 text-cream md:flex-row md:items-center lg:px-16 lg:py-20">
+          <div>
+            <h2 className="mb-3.5 font-display text-[34px] font-medium leading-[1.08] sm:text-[48px]">
+              Ready to meet <span className="italic text-gold">your matches?</span>
+            </h2>
+            <p className="text-base text-cream/70">
+              Free for parents. Three minutes. One unforgettable summer.
             </p>
-            <Link
-              href="/for-camps"
-              className="mt-6 inline-block rounded-full bg-gold px-7 py-3 font-semibold text-ink transition hover:brightness-105"
-            >
-              Claim your camp →
-            </Link>
           </div>
+          <Link
+            href="/quiz"
+            className="shrink-0 rounded-full bg-ember px-10 py-5 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(0,0,0,0.3)] transition-colors hover:bg-gold hover:text-pine"
+          >
+            Take the quiz →
+          </Link>
         </div>
       </section>
     </>

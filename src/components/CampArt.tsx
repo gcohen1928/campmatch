@@ -53,7 +53,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
       <defs>
         <linearGradient id={`sky-${camp.slug}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={mid} stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#fbf7ef" />
+          <stop offset="100%" stopColor="#f7f1e4" />
         </linearGradient>
       </defs>
       <rect width="400" height="225" fill={`url(#sky-${camp.slug})`} />
@@ -117,7 +117,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
       )}
       {/* tent */}
       <g transform={`translate(${175 + (h % 30)} 160)`}>
-        <path d="M0 46 L28 0 L56 46 Z" fill="#fbf7ef" />
+        <path d="M0 46 L28 0 L56 46 Z" fill="#f7f1e4" />
         <path d="M28 0 L56 46 H42 L28 18 Z" fill={sun} opacity="0.85" />
         <path d="M28 18 L38 46 H18 Z" fill={deep} opacity="0.75" />
         {/* pennant flag */}
