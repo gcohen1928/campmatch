@@ -27,6 +27,18 @@ export type SupportNeed =
   | "anxiety-support"
   | "inclusion-program";
 
+export interface CampReview {
+  /** persona, e.g. "Parent of a returning camper" — never a real name */
+  author: string;
+  role: "parent" | "camper" | "alum" | "counselor";
+  rating: number; // 1–5
+  text: string;
+  /** "compiled" = community snapshot distilled from public web sentiment;
+   *  "campmatch" = submitted through CampMatch (future) */
+  source: "compiled" | "campmatch";
+  year?: number;
+}
+
 export interface Camp {
   slug: string;
   name: string;
@@ -60,7 +72,13 @@ export interface Camp {
   firstTimeFriendly: boolean;
   acaAccredited: boolean;
   description: string;
+  /** empty string when the exact domain isn't known */
   website: string;
+  /** real photo URLs when available; the app falls back to generated cover art */
+  photos?: string[];
+  /** average community rating (1–5, one decimal), unverified estimate */
+  rating?: number;
+  reviewCount?: number;
   /** whether a camp operator has claimed this listing */
   claimed: boolean;
   /** data reviewed by the camp itself; unverified = compiled estimates */

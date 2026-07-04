@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { CAMPS } from "@/lib/camps-data";
 import { matchCamps } from "@/lib/matching";
 import { loadAnswers } from "@/lib/answers-store";
@@ -43,7 +43,8 @@ export function MatchesView() {
     );
   }
 
-  const top = results.slice(0, 12);
+  const [shown, setShown] = useState(12);
+  const top = results.slice(0, shown);
   const summaryBits = [
     `age ${answers.childAge}`,
     answers.campType === "both" ? "day + sleepaway" : answers.campType,
@@ -87,13 +88,22 @@ export function MatchesView() {
             ))}
           </div>
           {results.length > top.length && (
-            <p className="mt-10 text-center text-ink-soft">
-              {results.length - top.length} more passed your filters —{" "}
-              <Link href="/camps" className="font-semibold text-ember hover:text-ember-deep">
-                browse the full directory
-              </Link>
-              .
-            </p>
+            <div className="mt-10 text-center">
+              <button
+                type="button"
+                onClick={() => setShown((n) => n + 12)}
+                className="rounded-full border-2 border-pine px-8 py-3 font-semibold text-pine transition hover:bg-pine hover:text-cream"
+              >
+                Show more matches
+              </button>
+              <p className="mt-4 text-ink-soft">
+                {(results.length - top.length).toLocaleString()} more passed your filters —{" "}
+                <Link href="/camps" className="font-semibold text-ember hover:text-ember-deep">
+                  browse the full directory
+                </Link>
+                .
+              </p>
+            </div>
           )}
         </>
       )}

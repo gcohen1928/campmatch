@@ -8,6 +8,19 @@ function money(n: number) {
   return `$${Math.round(n / 100) / 10}k`.replace(".0k", "k");
 }
 
+export function RatingBadge({ camp, className = "" }: { camp: Camp; className?: string }) {
+  if (camp.rating === undefined) return null;
+  return (
+    <span className={`inline-flex items-center gap-1 text-xs font-semibold text-ink ${className}`}>
+      <span aria-hidden className="text-ember">★</span>
+      {camp.rating.toFixed(1)}
+      {camp.reviewCount ? (
+        <span className="font-normal text-ink-soft">({camp.reviewCount})</span>
+      ) : null}
+    </span>
+  );
+}
+
 export function CampMeta({ camp }: { camp: Camp }) {
   return (
     <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink-soft">
@@ -39,7 +52,17 @@ export function CampCard({
       className="group block overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-lift transition hover:-translate-y-0.5 hover:shadow-lift-lg"
     >
       <div className="relative h-40 overflow-hidden">
-        <CampArt camp={camp} className="h-full w-full transition duration-500 group-hover:scale-105" />
+        {camp.photos?.[0] ? (
+          // eslint-disable-next-line @next/next/no-img-element -- remote camp photos come from arbitrary domains
+          <img
+            src={camp.photos[0]}
+            alt={`Photo of ${camp.name}`}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <CampArt camp={camp} className="h-full w-full transition duration-500 group-hover:scale-105" />
+        )}
         {rank !== undefined && (
           <span className="absolute left-3 top-3 rounded-full bg-pine px-2.5 py-1 text-xs font-bold text-cream shadow">
             #{rank}
@@ -57,9 +80,12 @@ export function CampCard({
       </div>
       <div className="flex gap-4 p-5">
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-lg font-semibold leading-snug text-ink group-hover:text-pine">
-            {camp.name}
-          </h3>
+          <div className="flex items-baseline justify-between gap-2">
+            <h3 className="font-display text-lg font-semibold leading-snug text-ink group-hover:text-pine">
+              {camp.name}
+            </h3>
+            <RatingBadge camp={camp} className="shrink-0" />
+          </div>
           <div className="mt-1.5">
             <CampMeta camp={camp} />
           </div>
