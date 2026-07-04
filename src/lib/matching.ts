@@ -347,6 +347,29 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     });
   }
 
+  // ── Community reputation ───────────────────────────────────────────
+  if (camp.rating !== undefined) {
+    // 4.0 → 0.4, 4.5 → 0.7, 5.0 → 1.0; thin review counts pull toward neutral.
+    const confidence = clamp01((camp.reviewCount ?? 0) / 15);
+    const fit = clamp01(0.7 + (camp.rating - 4.5) * 0.6 * confidence);
+    dims.push({
+      weight: 5,
+      fit,
+      reason:
+        camp.rating >= 4.7 && (camp.reviewCount ?? 0) >= 10
+          ? {
+              label: "Families rave about it",
+              detail: `Rated ${camp.rating.toFixed(1)} across ${camp.reviewCount} community reviews.`,
+              strength: camp.rating >= 4.8 ? "great" : "good",
+            }
+          : undefined,
+      caution:
+        camp.rating <= 4.0 && (camp.reviewCount ?? 0) >= 10
+          ? "Community reviews are more mixed than most — read them before you commit."
+          : undefined,
+    });
+  }
+
   // ── Support needs (soft ones) ──────────────────────────────────────
   const softNeeds = q.supports.filter((s) => s !== "inclusion-program");
   if (softNeeds.length > 0) {

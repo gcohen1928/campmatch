@@ -11,9 +11,13 @@ import {
 } from "@/lib/quiz";
 import { CampArt } from "@/components/CampArt";
 import { CampCard } from "@/components/CampCard";
+import { SEED_CAMPS } from "@/lib/camps-seed";
+import { getReviewsForCamp } from "@/lib/reviews";
 
+// Pre-render the curated camps at build time; the thousands of compiled
+// listings render on demand (dynamicParams defaults to true).
 export function generateStaticParams() {
-  return CAMPS.map((c) => ({ slug: c.slug }));
+  return SEED_CAMPS.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -58,6 +62,11 @@ export default async function CampPage({
   const camp = getCampBySlug(slug);
   if (!camp) notFound();
 
+  const reviews = getReviewsForCamp(camp.slug);
+  const websiteHref =
+    camp.website ||
+    `https://www.google.com/search?q=${encodeURIComponent(`${camp.name} ${camp.city} ${camp.state} summer camp`)}`;
+
   const similar = CAMPS.filter(
     (c) =>
       c.slug !== camp.slug &&
@@ -75,7 +84,16 @@ export default async function CampPage({
 
       <div className="mt-4 overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-lift">
         <div className="relative h-56 sm:h-72">
-          <CampArt camp={camp} className="h-full w-full" />
+          {camp.photos?.[0] ? (
+            // eslint-disable-next-line @next/next/no-img-element -- remote camp photos come from arbitrary domains
+            <img
+              src={camp.photos[0]}
+              alt={`Photo of ${camp.name}`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <CampArt camp={camp} className="h-full w-full" />
+          )}
           <div className="absolute bottom-4 left-5 flex flex-wrap gap-2">
             <span className="rounded-full bg-pine px-3 py-1 text-sm font-semibold text-cream">
               {camp.type === "day" ? "Day camp" : "Sleepaway camp"}
@@ -100,6 +118,20 @@ export default async function CampPage({
               {camp.founded ? ` · Est. ${camp.founded}` : ""}
               {camp.acaAccredited ? " · ACA accredited" : ""}
             </p>
+            {camp.rating !== undefined && (
+              <p className="mt-2 flex items-center gap-1.5 text-ink">
+                <span aria-hidden className="text-lg leading-none text-ember">
+                  {"★".repeat(Math.round(camp.rating))}
+                  <span className="text-ink/15">{"★".repeat(5 - Math.round(camp.rating))}</span>
+                </span>
+                <span className="font-semibold">{camp.rating.toFixed(1)}</span>
+                {camp.reviewCount ? (
+                  <span className="text-sm text-ink-soft">
+                    · {camp.reviewCount} community review{camp.reviewCount === 1 ? "" : "s"}
+                  </span>
+                ) : null}
+              </p>
+            )}
             <p className="mt-5 text-lg leading-relaxed text-ink">{camp.description}</p>
 
             <h2 className="mt-9 text-xl font-semibold text-pine">Program strengths</h2>
@@ -148,6 +180,38 @@ export default async function CampPage({
                 </ul>
               </>
             )}
+
+            {reviews.length > 0 && (
+              <>
+                <h2 className="mt-9 text-xl font-semibold text-pine">What families say</h2>
+                <p className="mt-1 text-sm text-ink-soft">
+                  Community snapshots compiled from public posts and reviews
+                  around the web — not verified by CampMatch or the camp.
+                </p>
+                <div className="mt-4 space-y-4">
+                  {reviews.map((r, i) => (
+                    <figure key={i} className="rounded-2xl border border-ink/10 bg-cream-dark/50 p-5">
+                      <div className="flex items-center justify-between gap-3">
+                        <figcaption className="text-sm font-semibold text-ink">
+                          {r.author}
+                          <span className="ml-2 rounded-full bg-pine-light px-2 py-0.5 text-xs font-medium capitalize text-pine">
+                            {r.role}
+                          </span>
+                        </figcaption>
+                        <span aria-label={`${r.rating} out of 5 stars`} className="shrink-0 text-sm text-ember">
+                          {"★".repeat(r.rating)}
+                          <span className="text-ink/15">{"★".repeat(5 - r.rating)}</span>
+                        </span>
+                      </div>
+                      <blockquote className="mt-2 leading-relaxed text-ink">
+                        &ldquo;{r.text}&rdquo;
+                      </blockquote>
+                      {r.year && <p className="mt-2 text-xs text-ink-soft">Summer {r.year}</p>}
+                    </figure>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Facts sidebar */}
@@ -167,12 +231,12 @@ export default async function CampPage({
               <Fact label="Community" value={RELIGIOUS_LABELS[camp.religious]} />
             </dl>
             <a
-              href={camp.website}
+              href={websiteHref}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 block rounded-full bg-pine px-6 py-3.5 text-center font-semibold text-cream transition hover:bg-pine-deep"
             >
-              Visit camp website ↗
+              {camp.website ? "Visit camp website ↗" : "Find camp website ↗"}
             </a>
             <Link
               href="/quiz"

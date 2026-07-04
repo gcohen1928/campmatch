@@ -51,6 +51,8 @@ function Chip({
   );
 }
 
+const PAGE_SIZE = 48;
+
 export function CampsExplorer() {
   const [q, setQ] = useState("");
   const [type, setType] = useState<CampType | "all">("all");
@@ -59,6 +61,7 @@ export function CampsExplorer() {
   const [interest, setInterest] = useState<Interest | "all">("all");
   const [maxPrice, setMaxPrice] = useState<number>(20000);
   const [view, setView] = useState<"grid" | "map">("grid");
+  const [visible, setVisible] = useState(PAGE_SIZE);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -79,13 +82,26 @@ export function CampsExplorer() {
     }).sort((a, b) => a.name.localeCompare(b.name));
   }, [q, type, region, gender, interest, maxPrice]);
 
+  // Render incrementally — the dataset has thousands of camps.
+  const shown = filtered.slice(0, visible);
+  const setAndReset = <T,>(setter: (v: T) => void) => (v: T) => {
+    setter(v);
+    setVisible(PAGE_SIZE);
+  };
+  const setQ2 = setAndReset(setQ);
+  const setType2 = setAndReset(setType);
+  const setRegion2 = setAndReset(setRegion);
+  const setGender2 = setAndReset(setGender);
+  const setInterest2 = setAndReset(setInterest);
+  const setMaxPrice2 = setAndReset(setMaxPrice);
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-4xl font-semibold tracking-tight text-ink">Browse camps</h1>
           <p className="mt-2 text-lg text-ink-soft">
-            {CAMPS.length} camps and counting. Want a ranked list instead?{" "}
+            {CAMPS.length.toLocaleString()} camps and counting. Want a ranked list instead?{" "}
             <Link href="/quiz" className="font-semibold text-ember hover:text-ember-deep">
               Take the match quiz →
             </Link>
@@ -98,32 +114,32 @@ export function CampsExplorer() {
         <input
           type="search"
           value={q}
-          onChange={(e) => setQ(e.target.value)}
+          onChange={(e) => setQ2(e.target.value)}
           placeholder="Search by name, town or vibe…"
           className="w-full rounded-xl border-2 border-ink/10 px-4 py-3 text-ink placeholder:text-ink-soft/60 focus:border-ember focus:outline-none"
         />
         <div className="mt-4 flex flex-wrap gap-2">
-          <Chip active={type === "all"} onClick={() => setType("all")}>All camps</Chip>
-          <Chip active={type === "sleepaway"} onClick={() => setType("sleepaway")}>🌙 Sleepaway</Chip>
-          <Chip active={type === "day"} onClick={() => setType("day")}>🚌 Day camp</Chip>
+          <Chip active={type === "all"} onClick={() => setType2("all")}>All camps</Chip>
+          <Chip active={type === "sleepaway"} onClick={() => setType2("sleepaway")}>🌙 Sleepaway</Chip>
+          <Chip active={type === "day"} onClick={() => setType2("day")}>🚌 Day camp</Chip>
           <span className="mx-1 hidden w-px self-stretch bg-ink/10 sm:block" />
           {REGIONS.map((r) => (
-            <Chip key={r.key} active={region === r.key} onClick={() => setRegion(r.key)}>
+            <Chip key={r.key} active={region === r.key} onClick={() => setRegion2(r.key)}>
               {r.label}
             </Chip>
           ))}
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
-          <Chip active={gender === "all"} onClick={() => setGender("all")}>Any gender</Chip>
-          <Chip active={gender === "coed"} onClick={() => setGender("coed")}>Co-ed</Chip>
-          <Chip active={gender === "boys"} onClick={() => setGender("boys")}>Boys</Chip>
-          <Chip active={gender === "girls"} onClick={() => setGender("girls")}>Girls</Chip>
-          <Chip active={gender === "brother-sister"} onClick={() => setGender("brother-sister")}>Brother/sister</Chip>
+          <Chip active={gender === "all"} onClick={() => setGender2("all")}>Any gender</Chip>
+          <Chip active={gender === "coed"} onClick={() => setGender2("coed")}>Co-ed</Chip>
+          <Chip active={gender === "boys"} onClick={() => setGender2("boys")}>Boys</Chip>
+          <Chip active={gender === "girls"} onClick={() => setGender2("girls")}>Girls</Chip>
+          <Chip active={gender === "brother-sister"} onClick={() => setGender2("brother-sister")}>Brother/sister</Chip>
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
-          <Chip active={interest === "all"} onClick={() => setInterest("all")}>Any specialty</Chip>
+          <Chip active={interest === "all"} onClick={() => setInterest2("all")}>Any specialty</Chip>
           {(Object.keys(INTEREST_LABELS) as Interest[]).map((i) => (
-            <Chip key={i} active={interest === i} onClick={() => setInterest(i)}>
+            <Chip key={i} active={interest === i} onClick={() => setInterest2(i)}>
               {INTEREST_EMOJI[i]} {INTEREST_LABELS[i]}
             </Chip>
           ))}
@@ -142,7 +158,7 @@ export function CampsExplorer() {
             max={20000}
             step={500}
             value={maxPrice}
-            onChange={(e) => setMaxPrice(Number(e.target.value))}
+            onChange={(e) => setMaxPrice2(Number(e.target.value))}
             className="w-full max-w-xs accent-ember"
           />
         </div>
@@ -151,7 +167,7 @@ export function CampsExplorer() {
       {/* Results */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-semibold uppercase tracking-wider text-ink-soft">
-          {filtered.length} camp{filtered.length === 1 ? "" : "s"}
+          {filtered.length.toLocaleString()} camp{filtered.length === 1 ? "" : "s"}
         </p>
         <div className="flex gap-2">
           <Chip active={view === "grid"} onClick={() => setView("grid")}>▦ Grid</Chip>
@@ -167,11 +183,24 @@ export function CampsExplorer() {
           <CampsMap camps={filtered} />
         </div>
       ) : (
-        <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((c) => (
-            <CampCard key={c.slug} camp={c} />
-          ))}
-        </div>
+        <>
+          <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {shown.map((c) => (
+              <CampCard key={c.slug} camp={c} />
+            ))}
+          </div>
+          {filtered.length > shown.length && (
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                className="rounded-full border-2 border-pine px-8 py-3 font-semibold text-pine transition hover:bg-pine hover:text-cream"
+              >
+                Show {Math.min(PAGE_SIZE, filtered.length - shown.length)} more of {(filtered.length - shown.length).toLocaleString()}
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
