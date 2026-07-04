@@ -100,7 +100,8 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-cream/10 py-5 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} CampMatch. Camp details are compiled estimates until verified by the camp.
+        © {new Date().getFullYear()} CampMatch. Camp details are compiled estimates until verified by the camp.{" "}
+        <Link href="/admin" className="hover:text-gold">Admin</Link>
       </div>
     </footer>
   );
