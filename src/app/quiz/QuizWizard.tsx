@@ -11,7 +11,7 @@ import {
   INTEREST_LABELS,
   SUPPORT_LABELS,
 } from "@/lib/quiz";
-import { saveAnswers } from "@/lib/answers-store";
+import { recordQuizCompletion, saveAnswers } from "@/lib/answers-store";
 
 /* ── Building blocks ─────────────────────────────────────────────────── */
 
@@ -348,6 +348,7 @@ export function QuizWizard() {
 
   function finish() {
     saveAnswers(a);
+    recordQuizCompletion(a);
     router.push("/matches");
   }
 

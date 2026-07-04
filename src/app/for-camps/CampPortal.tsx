@@ -198,7 +198,8 @@ export function CampPortal() {
       {!supabaseEnabled && (
         <div className="mt-8">
           <Notice tone="info">
-            <strong>Preview mode:</strong> the production database isn&apos;t connected
+            <strong>Preview mode:</strong>{" "}
+            the production database isn&apos;t connected
             in this deployment, so accounts and submissions below are stored only
             in your browser. Every flow is fully explorable.
           </Notice>

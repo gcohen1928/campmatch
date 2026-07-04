@@ -18,6 +18,26 @@ import { INTEREST_LABELS, RELIGIOUS_LABELS } from "./quiz";
  *     like match percentages rather than raw scores.
  */
 
+/**
+ * Weight each compatibility dimension contributes to the final score.
+ * Exported so the admin dashboard reports the same numbers the engine uses.
+ * Session length, distance, first-timer and support dimensions only apply
+ * when the family's answers make them relevant.
+ */
+export const MATCHING_WEIGHTS = {
+  interests: 26,
+  sessionLength: 10,
+  distance: 9,
+  budget: 8,
+  vibe: 10,
+  competitiveness: 10,
+  structure: 8,
+  sizeSocial: 8,
+  religious: 9,
+  firstTime: 7,
+  supports: 9,
+} as const;
+
 const DISTANCE_CAPS: Record<QuizAnswers["maxDistance"], number> = {
   "1h": 70,
   "3h": 200,
@@ -94,7 +114,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
   const interestFit =
     q.interests.length === 0 ? 0.7 : clamp01(shared.length / Math.min(q.interests.length, 4));
   dims.push({
-    weight: 26,
+    weight: MATCHING_WEIGHTS.interests,
     fit: interestFit,
     reason:
       shared.length >= 2
@@ -125,7 +145,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     const closest = Math.min(...camp.sessionWeeks.map((w) => Math.abs(w - want)));
     const fit = clamp01(1 - closest / 4);
     dims.push({
-      weight: 10,
+      weight: MATCHING_WEIGHTS.sessionLength,
       fit,
       reason:
         closest <= 1
@@ -146,7 +166,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
   if (distance !== null) {
     const fit = distance <= distanceCap ? clamp01(1 - distance / (distanceCap * 1.5)) : 0.15;
     dims.push({
-      weight: 9,
+      weight: MATCHING_WEIGHTS.distance,
       fit,
       reason:
         distance <= 120
@@ -170,7 +190,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
         ? 1
         : clamp01(1 - (camp.tuitionMin - budgetCap) / budgetCap);
     dims.push({
-      weight: 8,
+      weight: MATCHING_WEIGHTS.budget,
       fit,
       reason:
         q.budget !== "any" && camp.tuitionMin <= budgetCap * 0.8
@@ -191,7 +211,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
   {
     const fit = scaleFit(camp.vibe, q.vibe);
     dims.push({
-      weight: 10,
+      weight: MATCHING_WEIGHTS.vibe,
       fit,
       reason:
         fit >= 0.75
@@ -213,7 +233,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
   {
     const fit = scaleFit(camp.competitiveness, q.competitiveness);
     dims.push({
-      weight: 10,
+      weight: MATCHING_WEIGHTS.competitiveness,
       fit,
       reason:
         fit >= 0.75
@@ -244,7 +264,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
   {
     const fit = scaleFit(camp.structure, q.structure);
     dims.push({
-      weight: 8,
+      weight: MATCHING_WEIGHTS.structure,
       fit,
       reason:
         fit >= 0.75
@@ -273,7 +293,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     }
     if (q.socialStyle === "big-energy" && sizeBand === "large") fit = clamp01(fit + 0.15);
     dims.push({
-      weight: 8,
+      weight: MATCHING_WEIGHTS.sizeSocial,
       fit,
       reason:
         fit >= 0.85
@@ -306,7 +326,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     else if (q.religious === "jewish-cultural" && camp.religious === "none") fit = 0.6;
     else if (camp.religious !== "none" && q.religious !== camp.religious) fit = 0.2;
     dims.push({
-      weight: 9,
+      weight: MATCHING_WEIGHTS.religious,
       fit,
       reason:
         fit >= 0.95 && camp.religious !== "none"
@@ -328,7 +348,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     const shortOption = Math.min(...camp.sessionWeeks) <= 4;
     const fit = camp.firstTimeFriendly ? (shortOption ? 1 : 0.8) : shortOption ? 0.6 : 0.35;
     dims.push({
-      weight: 7,
+      weight: MATCHING_WEIGHTS.firstTime,
       fit,
       reason:
         camp.firstTimeFriendly
@@ -376,7 +396,7 @@ export function scoreCamp(camp: Camp, q: QuizAnswers): MatchResult | null {
     const covered = softNeeds.filter((s) => camp.supports.includes(s));
     const fit = covered.length / softNeeds.length;
     dims.push({
-      weight: 9,
+      weight: MATCHING_WEIGHTS.supports,
       fit,
       reason:
         covered.length === softNeeds.length
