@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  /* CampMatch palette — warm summer-camp editorial */
+  --color-cream: #fbf7ef;
+  --color-cream-dark: #f3ecdd;
+  --color-ink: #22301f;
+  --color-ink-soft: #55614f;
+  --color-pine: #1e4d3a;
+  --color-pine-deep: #143526;
+  --color-pine-light: #eaf2ea;
+  --color-ember: #e96d3f;
+  --color-ember-deep: #c9532a;
+  --color-gold: #f2b84b;
+  --color-sky: #8ecbc2;
+  --color-sky-deep: #3f8f84;
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-lift: 0 1px 2px rgb(34 48 31 / 0.06), 0 8px 24px -8px rgb(34 48 31 / 0.14);
+  --shadow-lift-lg: 0 2px 4px rgb(34 48 31 / 0.06), 0 20px 44px -12px rgb(34 48 31 / 0.22);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ring-fill {
+  from { stroke-dashoffset: var(--ring-circ); }
+}
+
+.animate-ring circle.ring-value {
+  animation: ring-fill 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* subtle paper grain on hero surfaces */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(rgb(34 48 31 / 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}

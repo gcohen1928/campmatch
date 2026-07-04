@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CampMatch extraction schema",
+  "description": "Target shape for LLM extraction from a camp's website. Mirrors src/lib/types.ts Camp.",
+  "type": "object",
+  "required": ["name", "type", "city", "state"],
+  "properties": {
+    "name": { "type": "string" },
+    "type": { "enum": ["sleepaway", "day"] },
+    "city": { "type": "string" },
+    "state": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "ageMin": { "type": "integer", "minimum": 2, "maximum": 21 },
+    "ageMax": { "type": "integer", "minimum": 2, "maximum": 21 },
+    "gender": { "enum": ["coed", "boys", "girls", "brother-sister"] },
+    "sessionWeeks": { "type": "array", "items": { "type": "number" } },
+    "tuitionMin": { "type": "integer", "description": "USD, cheapest published option" },
+    "tuitionMax": { "type": "integer", "description": "USD, most expensive published option" },
+    "size": { "type": "integer", "description": "approx campers per session" },
+    "founded": { "type": "integer" },
+    "interests": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "team-sports", "individual-sports", "waterfront", "arts-theater",
+          "music", "stem", "outdoor-adventure", "horseback",
+          "gymnastics-dance", "nature-animals", "action-sports"
+        ]
+      },
+      "description": "Only genuine program strengths, max 6"
+    },
+    "vibe": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1 rustic … 5 modern" },
+    "competitiveness": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "structure": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1 scheduled … 5 elective" },
+    "religious": { "enum": ["none", "jewish-cultural", "jewish-observant", "christian"] },
+    "supports": {
+      "type": "array",
+      "items": { "enum": ["food-allergies", "adhd-learning", "anxiety-support", "inclusion-program"] }
+    },
+    "firstTimeFriendly": { "type": "boolean" },
+    "acaAccredited": { "type": "boolean" },
+    "description": { "type": "string", "description": "Original neutral 1-2 sentence summary. Do NOT copy site prose." },
+    "website": { "type": "string", "format": "uri" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "extraction confidence; <0.6 goes to manual review" }
+  }
+}
