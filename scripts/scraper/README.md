@@ -39,18 +39,25 @@ get filled by this loop — run from a normal machine (the sandbox can't reach
 camp websites):
 
 ```
-# 1. Bundle page text for every camp with a website (resumable; ~2s/page)
+# 1. Bundle page text for every camp with a website (resumable; ~2s/page).
+#    Rookie-day pages are prioritized (any URL containing "rookie",
+#    "visit", "open house", "tour").
 npx tsx scripts/scraper/enrich-camps.ts fetch out/enrich --limit=200
 
-# 2. LLM extraction (external): for each out/enrich/<slug>.json, prompt an
-#    LLM with camp-schema.json, temperature 0, "omit anything not stated on
-#    the pages — never guess". Rookie-day pages are prioritized by the
-#    fetcher (any URL containing "rookie", "visit", "open house", "tour").
-#    Save arrays of {slug, ...fields} to out/enriched/batch-*.json.
+# 2. Extract with the Claude API (needs ANTHROPIC_API_KEY; resumable —
+#    one out/enriched/<slug>.json per camp, already-done camps skipped).
+#    Strict JSON-schema output; the prompt forbids guessing — fields the
+#    pages don't state are omitted and stay "not compiled yet" in the app.
+npx tsx scripts/scraper/enrich-camps.ts extract out/enrich out/enriched --limit=200
 
 # 3. Validate & apply (existing values win unless --overwrite)
 npx tsx scripts/scraper/enrich-camps.ts merge out/enriched
 ```
+
+Cost/scale note: a camp bundle is ~9 pages of text (~20–30K tokens), so a
+full pass over ~1,900 camps is a few hundred dollars on `claude-opus-4-8`
+(pass `--model=claude-haiku-4-5` for a cheaper first sweep) and roughly a
+day of polite 1-req/sec fetching. Run it in `--limit` batches.
 
 Coverage expectations: websites state uniforms/laundry/buses/visiting-day
 policy far more often than bunk AC or bunk size — expect 60–80% coverage on
