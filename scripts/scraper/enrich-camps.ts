@@ -14,11 +14,12 @@
  *      handbook…) and writes one text bundle per camp:
  *      out/enrich/<slug>.json  →  { slug, name, website, pages: [{url, text}] }
  *
- *   2. EXTRACT (LLM, external — same as the original build)
- *      Feed each bundle to an LLM with scripts/scraper/camp-schema.json,
- *      temperature 0, instructed to OMIT any field the pages don't state —
- *      never guess. Output arrays of { slug, ...enrichmentFields } records
- *      into a directory, e.g. out/enriched/batch-01.json.
+ *   2. EXTRACT   npx tsx scripts/scraper/enrich-camps.ts extract out/enrich out/enriched [--limit 50] [--model claude-opus-4-8]
+ *      Runs each fetched bundle through the Claude API with a strict JSON
+ *      schema, instructed to OMIT any field the pages don't state — never
+ *      guess. Writes one { slug, ...enrichmentFields } record per camp to
+ *      out/enriched/<slug>.json (resumable: already-extracted camps are
+ *      skipped). Needs ANTHROPIC_API_KEY (or an `ant auth login` profile).
  *
  *   3. MERGE   npx tsx scripts/scraper/enrich-camps.ts merge out/enriched [--overwrite]
  *      Validates every record and fills the new optional fields onto
@@ -171,6 +172,125 @@ async function runFetch(args: string[]) {
   console.log(`Done: ${ok}/${targets.length} camps bundled.`);
 }
 
+/* ── EXTRACT mode ────────────────────────────────────────────────────── */
+
+/**
+ * Structured-output schema for one camp's enrichment. A trimmed version of
+ * camp-schema.json: structured outputs don't support numeric/string
+ * constraints, so range clamping happens in cleanEnrichment() at merge time.
+ * Nothing is required — the model omits any field the pages don't state.
+ */
+const EXTRACT_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["slug"],
+  properties: {
+    slug: { type: "string" },
+    culture: { type: "integer", description: "1 down-to-earth & low-key … 5 polished/upscale/scene-y; only when the site's tone/pricing make it clear" },
+    activities: { type: "array", items: { type: "string" }, description: "specific offerings as listed, lowercase — 'waterski', 'ice hockey', 'go-karts'; not general categories" },
+    lakeOnSite: { type: "boolean", description: "private lake on the property (a pool is not a lake)" },
+    acInBunks: { type: "boolean", description: "camper bunks/cabins are air-conditioned" },
+    bunkSize: { type: "integer", description: "campers per bunk/cabin" },
+    laundryService: { type: "boolean", description: "camp does campers' laundry" },
+    uniformRequired: { type: "boolean", description: "required uniform/clothing families must buy" },
+    doctorOnSite: { type: "boolean", description: "physician on site, not just nurses" },
+    visitingDaysPerSession: { type: "integer" },
+    phoneCallsPerSession: { type: "integer", description: "scheduled camper phone calls home per session" },
+    sessionModel: { enum: ["full-summer", "sessions", "flexible"], description: "flexible = partial-summer splits offered (e.g. 3+3)" },
+    tripsPerSession: { type: "integer", description: "out-of-camp trips per session" },
+    traditions: { type: "array", items: { type: "string" }, description: "signature all-camp events, e.g. 'Color War', 'College Days'" },
+    ownership: { enum: ["family", "nonprofit", "agency"], description: "family = privately owned; agency = federation / Y / scout-sponsored" },
+    lastRenovated: { type: "integer", description: "most recent major facilities renovation year" },
+    busService: { type: "boolean" },
+    busCities: { type: "array", items: { type: "string" }, description: "metro areas buses depart from" },
+    trunkPickup: { type: "boolean" },
+    trunkPickupAreas: { type: "array", items: { type: "string" } },
+    rookieDay: {
+      type: "object",
+      additionalProperties: false,
+      required: ["offered"],
+      properties: {
+        offered: { type: "boolean" },
+        details: { type: "string", description: "when it runs / how to sign up, incl. dates found on the site" },
+        url: { type: "string", description: "the camp's rookie-day / visit page URL" },
+      },
+    },
+  },
+} as const;
+
+const EXTRACT_SYSTEM = `You extract life-at-camp facts from a summer camp's website text for a camp-matching directory.
+
+Rules:
+- Report ONLY facts the pages state or unambiguously imply. If a field isn't addressed, OMIT it entirely — never guess, never infer from what's typical. Missing data is rendered honestly as "not compiled yet" downstream; a wrong fact about a real camp is far worse than a missing one.
+- "culture" may be inferred from tone, pricing and amenities when the signal is strong; otherwise omit it.
+- activities: specific, lowercase offerings only ("waterski", "ceramics", "go-karts") — not categories like "sports".
+- rookieDay: pages mentioning a rookie day, new-camper day, open house or summer tours count; include dates/details and the page URL when present.
+- Facts only, no marketing prose.`;
+
+async function runExtract(args: string[]) {
+  const positional = args.filter((a) => !a.startsWith("--"));
+  const inDir = positional[0] ?? "out/enrich";
+  const outDir = positional[1] ?? "out/enriched";
+  const limit = Number(args.find((a) => a.startsWith("--limit"))?.split("=")[1] ?? Infinity);
+  const model = args.find((a) => a.startsWith("--model"))?.split("=")[1] ?? "claude-opus-4-8";
+
+  const { default: Anthropic } = await import("@anthropic-ai/sdk");
+  const client = new Anthropic();
+
+  await mkdir(outDir, { recursive: true });
+  const done = new Set(
+    (await readdir(outDir)).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")),
+  );
+  const bundles = (await readdir(inDir))
+    .filter((f) => f.endsWith(".json") && !done.has(f.replace(/\.json$/, "")))
+    .sort()
+    .slice(0, limit);
+
+  console.log(`Extracting ${bundles.length} camps (${done.size} already done) with ${model} → ${outDir}/`);
+  let ok = 0;
+  for (const file of bundles) {
+    const slug = file.replace(/\.json$/, "");
+    try {
+      const bundle = JSON.parse(await readFile(join(inDir, file), "utf8")) as {
+        slug: string;
+        name: string;
+        website: string;
+        pages: { url: string; text: string }[];
+      };
+      const pagesText = bundle.pages
+        .map((p) => `=== PAGE: ${p.url} ===\n${p.text}`)
+        .join("\n\n");
+      const response = await client.messages.create({
+        model,
+        max_tokens: 8192,
+        thinking: { type: "adaptive" },
+        system: EXTRACT_SYSTEM,
+        output_config: { format: { type: "json_schema", schema: EXTRACT_SCHEMA } },
+        messages: [
+          {
+            role: "user",
+            content: `Camp: ${bundle.name} (slug: "${bundle.slug}", website: ${bundle.website})\n\nExtract the enrichment record from these pages. Use slug "${bundle.slug}" verbatim.\n\n${pagesText}`,
+          },
+        ],
+      });
+      if (response.stop_reason !== "end_turn") {
+        console.warn(`  ✗ ${slug}: stop_reason=${response.stop_reason} — skipped`);
+        continue;
+      }
+      const text = response.content.find((b) => b.type === "text")?.text ?? "";
+      const record = JSON.parse(text) as Record<string, unknown>;
+      record.slug = bundle.slug; // never trust the echo
+      await writeFile(join(outDir, `${slug}.json`), JSON.stringify(record, null, 1));
+      const fieldCount = Object.keys(record).length - 1;
+      ok++;
+      console.log(`  ✓ ${slug}: ${fieldCount} field${fieldCount === 1 ? "" : "s"} compiled`);
+    } catch (err) {
+      console.warn(`  ✗ ${slug}: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+  console.log(`Done: ${ok}/${bundles.length} extracted. Re-run to retry failures; then: enrich-camps.ts merge ${outDir}`);
+}
+
 /* ── MERGE mode ──────────────────────────────────────────────────────── */
 
 const OWNERSHIPS = new Set<Ownership>(["family", "nonprofit", "agency"]);
@@ -306,10 +426,11 @@ async function runMerge(args: string[]) {
 
 const [mode, ...rest] = process.argv.slice(2);
 if (mode === "fetch") runFetch(rest);
+else if (mode === "extract") runExtract(rest);
 else if (mode === "merge") runMerge(rest);
 else {
   console.error(
-    "Usage:\n  npx tsx scripts/scraper/enrich-camps.ts fetch out/enrich [--limit=50] [--only=slug-a,slug-b]\n  npx tsx scripts/scraper/enrich-camps.ts merge out/enriched [--overwrite]",
+    "Usage:\n  npx tsx scripts/scraper/enrich-camps.ts fetch out/enrich [--limit=50] [--only=slug-a,slug-b]\n  npx tsx scripts/scraper/enrich-camps.ts extract out/enrich out/enriched [--limit=50] [--model=claude-opus-4-8]\n  npx tsx scripts/scraper/enrich-camps.ts merge out/enriched [--overwrite]",
   );
   process.exit(1);
 }
