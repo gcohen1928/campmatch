@@ -6,9 +6,12 @@ import {
   GENDER_LABELS,
   INTEREST_EMOJI,
   INTEREST_LABELS,
+  OWNERSHIP_LABELS,
   RELIGIOUS_LABELS,
+  SESSION_MODEL_LABELS,
   SUPPORT_LABELS,
 } from "@/lib/quiz";
+import { NORM_HINTS } from "@/lib/norms";
 import { CampArt } from "@/components/CampArt";
 import { CampCard } from "@/components/CampCard";
 import { SEED_CAMPS } from "@/lib/camps-seed";
@@ -39,6 +42,38 @@ function Fact({ label, value }: { label: string; value: string }) {
     <div className="rounded-xl border border-ink/10 bg-white p-4">
       <dt className="text-xs font-semibold uppercase tracking-wider text-ink-soft">{label}</dt>
       <dd className="mt-1 font-semibold text-ink">{value}</dd>
+    </div>
+  );
+}
+
+function yesNo(v: boolean | undefined, yes = "Yes", no = "No"): string | undefined {
+  return v === undefined ? undefined : v ? yes : no;
+}
+
+/** One life-at-camp fact: compiled value, or an honest "not compiled yet",
+ *  each with a "what's normal" hint so parents can spot outliers. */
+function DetailRow({
+  label,
+  value,
+  hint,
+}: {
+  label: string;
+  value: string | undefined;
+  hint?: string;
+}) {
+  return (
+    <div className="flex flex-col gap-0.5 border-t border-ink/5 py-3 first:border-t-0 sm:flex-row sm:items-baseline sm:gap-4">
+      <dt className="w-44 shrink-0 text-sm font-semibold text-ink-soft">{label}</dt>
+      <dd className="min-w-0">
+        {value ? (
+          <span className="font-medium text-ink">{value}</span>
+        ) : (
+          <span className="text-sm italic text-ink-soft">
+            Not compiled yet — ask on your tour or rookie day
+          </span>
+        )}
+        {hint && <span className="ml-2 text-xs text-ink-soft">({hint})</span>}
+      </dd>
     </div>
   );
 }
@@ -146,6 +181,22 @@ export default async function CampPage({
               ))}
             </div>
 
+            {camp.activities && camp.activities.length > 0 && (
+              <>
+                <h2 className="mt-9 text-xl font-semibold text-pine">Specific activities</h2>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {camp.activities.map((act) => (
+                    <span
+                      key={act}
+                      className="rounded-full border border-ink/10 bg-cream-dark/60 px-3 py-1 text-sm font-medium capitalize text-ink"
+                    >
+                      {act}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
+
             <h2 className="mt-9 text-xl font-semibold text-pine">Camp personality</h2>
             <div className="mt-4 space-y-4">
               {SCALE_ROWS.map((row) => (
@@ -168,6 +219,139 @@ export default async function CampPage({
               ))}
             </div>
 
+            <h2 className="mt-9 text-xl font-semibold text-pine">Life at camp</h2>
+            <p className="mt-1 text-sm text-ink-soft">
+              The details that actually shape a summer. We&apos;re compiling these camp by
+              camp — anything missing is worth asking about on a rookie day.
+            </p>
+            <dl className="mt-4 rounded-2xl border border-ink/10 bg-white px-5 py-2">
+              <DetailRow
+                label="Session model"
+                value={camp.sessionModel ? SESSION_MODEL_LABELS[camp.sessionModel] : undefined}
+                hint={NORM_HINTS.sessionModel}
+              />
+              <DetailRow label="Lake on site" value={yesNo(camp.lakeOnSite)} hint={NORM_HINTS.lakeOnSite} />
+              <DetailRow label="AC in bunks" value={yesNo(camp.acInBunks)} hint={NORM_HINTS.acInBunks} />
+              <DetailRow
+                label="Bunk size"
+                value={camp.bunkSize ? `~${camp.bunkSize} campers per bunk` : undefined}
+                hint={NORM_HINTS.bunkSize}
+              />
+              <DetailRow
+                label="Laundry service"
+                value={yesNo(camp.laundryService, "Yes — done for campers", "No")}
+                hint={NORM_HINTS.laundryService}
+              />
+              <DetailRow
+                label="Uniform"
+                value={yesNo(camp.uniformRequired, "Required (families buy it)", "No uniform")}
+                hint={NORM_HINTS.uniformRequired}
+              />
+              <DetailRow
+                label="Doctor on site"
+                value={yesNo(camp.doctorOnSite, "Yes — physician on site", "Nurse-led health center")}
+                hint={NORM_HINTS.doctorOnSite}
+              />
+              <DetailRow
+                label="Visiting days"
+                value={
+                  camp.visitingDaysPerSession !== undefined
+                    ? `${camp.visitingDaysPerSession} per session`
+                    : undefined
+                }
+                hint={NORM_HINTS.visitingDaysPerSession}
+              />
+              <DetailRow
+                label="Phone calls"
+                value={
+                  camp.phoneCallsPerSession !== undefined
+                    ? `${camp.phoneCallsPerSession} scheduled per session`
+                    : undefined
+                }
+                hint={NORM_HINTS.phoneCallsPerSession}
+              />
+              <DetailRow
+                label="Trips"
+                value={
+                  camp.tripsPerSession !== undefined
+                    ? `${camp.tripsPerSession} out-of-camp trip${camp.tripsPerSession === 1 ? "" : "s"} per session`
+                    : undefined
+                }
+                hint={NORM_HINTS.tripsPerSession}
+              />
+              <DetailRow
+                label="Traditions"
+                value={camp.traditions?.length ? camp.traditions.join(", ") : undefined}
+              />
+              <DetailRow
+                label="Ownership"
+                value={camp.ownership ? OWNERSHIP_LABELS[camp.ownership] : undefined}
+                hint={NORM_HINTS.ownership}
+              />
+              <DetailRow
+                label="Founded"
+                value={
+                  camp.founded
+                    ? `${camp.founded} — ${new Date().getFullYear() - camp.founded} years in business`
+                    : undefined
+                }
+              />
+              <DetailRow
+                label="Last renovated"
+                value={camp.lastRenovated ? String(camp.lastRenovated) : undefined}
+                hint={NORM_HINTS.lastRenovated}
+              />
+              <DetailRow
+                label="Bus to camp"
+                value={
+                  camp.busService === undefined
+                    ? undefined
+                    : camp.busService
+                      ? `Yes${camp.busCities?.length ? ` — from ${camp.busCities.join(", ")}` : ""}`
+                      : "No — parent drop-off"
+                }
+                hint={NORM_HINTS.busService}
+              />
+              <DetailRow
+                label="Trunk pickup"
+                value={
+                  camp.trunkPickup === undefined
+                    ? undefined
+                    : camp.trunkPickup
+                      ? `Yes${camp.trunkPickupAreas?.length ? ` — ${camp.trunkPickupAreas.join(", ")}` : ""}`
+                      : "No — trunks travel with you"
+                }
+                hint={NORM_HINTS.trunkPickup}
+              />
+            </dl>
+
+            <div className="mt-6 rounded-2xl border border-gold/50 bg-gold/10 p-5">
+              <h3 className="font-semibold text-ink">🏕️ Rookie day</h3>
+              {camp.rookieDay?.offered ? (
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+                  {camp.rookieDay.details ??
+                    "This camp hosts a rookie day — prospective campers spend a day on site before you commit."}{" "}
+                  {camp.rookieDay.url && (
+                    <a
+                      href={camp.rookieDay.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-ember hover:text-ember-deep"
+                    >
+                      Details on the camp&apos;s site ↗
+                    </a>
+                  )}
+                </p>
+              ) : (
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+                  We haven&apos;t compiled this camp&apos;s rookie-day schedule yet. Most camps
+                  host one (or summer tours) — families typically shortlist 4–5 camps, visit
+                  their rookie days, then decide. Ask the director, or check the camp&apos;s
+                  website.
+                </p>
+              )}
+            </div>
+
             {camp.supports.length > 0 && (
               <>
                 <h2 className="mt-9 text-xl font-semibold text-pine">Support & inclusion</h2>
@@ -186,7 +370,7 @@ export default async function CampPage({
                 <h2 className="mt-9 text-xl font-semibold text-pine">What families say</h2>
                 <p className="mt-1 text-sm text-ink-soft">
                   Community snapshots compiled from public posts and reviews
-                  around the web — not verified by CampMatch or the camp.
+                  around the web — not verified by Camp Matching or the camp.
                 </p>
                 <div className="mt-4 space-y-4">
                   {reviews.map((r, i) => (
@@ -230,11 +414,20 @@ export default async function CampPage({
               <Fact label="Campers on site" value={`~${camp.size}`} />
               <Fact label="Community" value={RELIGIOUS_LABELS[camp.religious]} />
             </dl>
+            <Link
+              href={`/apply/${camp.slug}`}
+              className="mt-5 block rounded-full bg-ember px-6 py-3.5 text-center font-semibold text-white shadow-lift transition hover:bg-ember-deep"
+            >
+              Apply through Camp Matching →
+            </Link>
+            <p className="mt-2 text-center text-xs text-ink-soft">
+              One form — we send it to the camp for you.
+            </p>
             <a
               href={websiteHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 block rounded-full bg-pine px-6 py-3.5 text-center font-semibold text-cream transition hover:bg-pine-deep"
+              className="mt-4 block rounded-full bg-pine px-6 py-3.5 text-center font-semibold text-cream transition hover:bg-pine-deep"
             >
               {camp.website ? "Visit camp website ↗" : "Find camp website ↗"}
             </a>

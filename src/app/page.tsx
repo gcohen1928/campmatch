@@ -11,7 +11,7 @@ function money(n: number) {
 const STEPS = [
   {
     title: "Tell us about your kid",
-    body: "Personality, interests, social style — plus budget, distance and session length. Three minutes flat.",
+    body: "Personality, energy, eating habits, hobbies — plus distance, session style and your must-haves. Three minutes flat.",
   },
   {
     title: "We play matchmaker",
@@ -119,7 +119,7 @@ export default function Home() {
             Find the camp your kid was <span className="italic text-ember">made for.</span>
           </h1>
           <p className="mb-9 max-w-[480px] text-[17.5px] leading-[1.65] text-ink/75">
-            Take the 3-minute personality quiz and meet your matches — with a
+            Take the 3-minute questionnaire and meet your matches — with a
             percentage, and the honest reasons why.
           </p>
           <div className="flex flex-wrap items-center gap-3.5">
@@ -127,7 +127,7 @@ export default function Home() {
               href="/quiz"
               className="rounded-full bg-pine px-[34px] py-[19px] text-[15px] font-semibold text-cream shadow-[0_12px_28px_rgba(30,59,44,0.28)] transition-colors hover:bg-ember"
             >
-              Take the 3-minute quiz →
+              Take the questionnaire →
             </Link>
             <Link
               href="/camps"
@@ -226,7 +226,7 @@ export default function Home() {
       {/* Featured camps */}
       <section className="mx-auto max-w-[1240px] px-4 pb-22 pt-4 sm:px-6 lg:px-12">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
-          <h2 className="font-display text-[32px] font-medium sm:text-[42px]">Camps on CampMatch</h2>
+          <h2 className="font-display text-[32px] font-medium sm:text-[42px]">Camps on Camp Matching</h2>
           <Link
             href="/camps"
             className="self-start rounded-full border border-ink/14 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-cream-dark"
@@ -256,7 +256,7 @@ export default function Home() {
             href="/quiz"
             className="shrink-0 rounded-full bg-ember px-10 py-5 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(0,0,0,0.3)] transition-colors hover:bg-gold hover:text-pine"
           >
-            Take the quiz →
+            Take the questionnaire →
           </Link>
         </div>
       </section>

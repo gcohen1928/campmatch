@@ -1,7 +1,7 @@
-# CampMatch 🏕️💘
+# Camp Matching 🏕️💘
 
 **Match.com for summer camps.** Parents take a 3-minute personality/logistics
-quiz about their kid; CampMatch scores every camp in the database across a
+questionnaire about their kid; Camp Matching scores every camp in the database across a
 dozen compatibility dimensions and returns a ranked list with match
 percentages, plain-English reasons and honest cautions. Camps can claim their
 listing or create a new one.
@@ -25,13 +25,13 @@ pnpm build      # production build
 3. Deploy. Add the custom domain in Project → Settings → Domains when ready.
 
 The app is fully functional with zero environment variables — quiz, matching,
-directory and camp profiles all run off the bundled seed dataset, and the camp
+directory, camp profiles and applications all run off the bundled seed dataset, and the camp
 portal runs in clearly-labeled demo mode.
 
 ## Going live with real camp accounts (Supabase)
 
 1. Create a Supabase project (free tier is fine).
-2. Run `supabase/migrations/0001_init.sql` in the SQL editor.
+2. Run the files in `supabase/migrations/` (in order) in the SQL editor.
 3. In Vercel → Project → Settings → Environment Variables, add:
    - `NEXT_PUBLIC_SUPABASE_URL` — from Supabase → Settings → API
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — same page

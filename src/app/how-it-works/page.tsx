@@ -4,15 +4,16 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How it works",
   description:
-    "How CampMatch's questionnaire and matching algorithm find the right camp for your kid.",
+    "How Camp Matching's questionnaire and matching algorithm find the right camp for your kid.",
 };
 
 const DIMENSIONS = [
-  ["Interests & passions", "The heaviest factor. We map your kid's picks against each camp's genuine program strengths — not just a checkbox activity list.", "26%"],
-  ["Camp personality", "Rustic vs. modern, competitive vs. laid-back, scheduled vs. choice-based. Every camp is rated on the same 1–5 scales your quiz answers use.", "28%"],
-  ["Community & culture", "Co-ed vs. single-gender, religious and cultural fit, camp size matched against your child's social style.", "17%"],
-  ["Logistics", "Distance from your home, session length and budget. Practical dealbreakers are filtered out entirely; near-misses just lose points.", "27%"],
-  ["First-timer & support needs", "First-summer readiness, allergy handling, learning and inclusion programs — weighted in when you flag them.", "varies"],
+  ["Interests & specific hobbies", "The heaviest factor. Your kid's picks — plus free-text hobbies like \"waterski\" or \"ice hockey\" — mapped against each camp's genuine program strengths and its actual activity list.", "~26%"],
+  ["Camp personality & culture", "Rustic vs. modern, competitive vs. laid-back, scheduled vs. choice-based, down-to-earth vs. upscale. Every camp is rated on the same 1–5 scales your answers use.", "~28%"],
+  ["Community & size", "Co-ed vs. single-gender, religious and cultural fit, camp size matched against your child's social style.", "~17%"],
+  ["Logistics", "Distance from your home, session length, and split-summer options (like 3+3) when you want them. Practical dealbreakers are filtered out entirely; near-misses just lose points.", "~16%"],
+  ["Life at camp", "Your must-haves — AC in bunks, a lake, laundry, a doctor on site, buses, trunk pickup — plus phone-call and visiting-day policy, uniforms, and medical staffing for kids on daily meds. Camps confirmed to lack a must-have are dropped; ones we haven't compiled yet get flagged so you can ask.", "~13%"],
+  ["First-timer & support needs", "First-summer readiness, rookie days, allergy handling, learning and inclusion programs — weighted in when you flag them.", "varies"],
 ];
 
 export default function HowItWorksPage() {
@@ -23,7 +24,7 @@ export default function HowItWorksPage() {
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-soft">
         Camp directories give you a phone book. We give you an introduction.
-        Here&apos;s what happens between the quiz and your match list.
+        Here&apos;s what happens between the questionnaire and your match list.
       </p>
 
       <ol className="mt-12 space-y-10">
@@ -63,7 +64,19 @@ export default function HowItWorksPage() {
           </p>
         </li>
         <li>
-          <h2 className="text-2xl font-semibold text-pine">4 · Verified by camps over time</h2>
+          <h2 className="text-2xl font-semibold text-pine">4 · A short list, then rookie days</h2>
+          <p className="mt-2 leading-relaxed text-ink-soft">
+            You get your top 5 — not five hundred. That&apos;s how families actually
+            choose: shortlist 4–5 camps, visit their rookie days over the summer,
+            then pick from the ones your kid walked around. Alongside your matches
+            we show what&apos;s <em>normal</em> at camp (most bunks have no AC; one
+            visiting day per session is typical; uniforms are the exception) so you
+            can tell which camp is the outlier. When you&apos;re ready, apply right
+            here — one form, and we send it to the camp for you.
+          </p>
+        </li>
+        <li>
+          <h2 className="text-2xl font-semibold text-pine">5 · Verified by camps over time</h2>
           <p className="mt-2 leading-relaxed text-ink-soft">
             Listings start as carefully compiled public data, clearly marked as
             unverified. Camp directors can claim their listing, correct every
@@ -78,7 +91,7 @@ export default function HowItWorksPage() {
           href="/quiz"
           className="mt-5 inline-block rounded-full bg-ember px-8 py-3.5 font-semibold text-white shadow-lift-lg transition hover:bg-ember-deep"
         >
-          Take the 3-minute quiz →
+          Take the 3-minute questionnaire →
         </Link>
       </div>
     </div>

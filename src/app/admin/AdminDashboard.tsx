@@ -8,12 +8,19 @@ import { loadQuizCompletions } from "@/lib/answers-store";
 import { matchCamps, MATCHING_WEIGHTS, passesHardFilters } from "@/lib/matching";
 import { STATE_CENTROIDS } from "@/lib/geo";
 import {
-  BUDGET_LABELS,
+  COMFORT_LABELS,
+  DEFAULT_ANSWERS,
   DISTANCE_LABELS,
+  EATING_LABELS,
   GENDER_LABELS,
   INTEREST_LABELS,
+  MEDICATION_LABELS,
+  normalizeAnswers,
+  PHONE_PREF_LABELS,
   RELIGIOUS_LABELS,
   SUPPORT_LABELS,
+  UNIFORM_PREF_LABELS,
+  VISITING_PREF_LABELS,
 } from "@/lib/quiz";
 import type {
   Camp,
@@ -273,7 +280,7 @@ function quizSummary(a: QuizAnswers) {
     a.childGender === "any" ? null : a.childGender === "boy" ? "boy" : "girl",
     a.campType === "both" ? "day or sleepaway" : `${a.campType} camp`,
     `from ${a.homeState}`,
-    BUDGET_LABELS[a.budget],
+    a.mustHaves.length ? `${a.mustHaves.length} must-have${a.mustHaves.length === 1 ? "" : "s"}` : null,
   ]
     .filter(Boolean)
     .join(" · ");
@@ -286,13 +293,22 @@ function QuizAnswerDetail({ a }: { a: QuizAnswers }) {
     ["Session length", a.sessionWeeks ? (a.sessionWeeks === "flexible" ? "Flexible" : `~${a.sessionWeeks} weeks`) : "—"],
     ["Home state", STATE_CENTROIDS[a.homeState]?.name ?? a.homeState],
     ["Distance", DISTANCE_LABELS[a.maxDistance]],
-    ["Budget", BUDGET_LABELS[a.budget]],
+    ["Split-summer option", a.wantsSplitOption ? "Wanted (e.g. 3+3)" : "Not needed"],
     ["Interests", a.interests.length ? a.interests.map((i) => INTEREST_LABELS[i]).join(", ") : "None picked"],
+    ["Specific hobbies", a.hobbies || "—"],
+    ["Activity level", `${a.activityLevel}/5`],
+    ["Eating habits", EATING_LABELS[a.eatingHabits]],
+    ["Medications", MEDICATION_LABELS[a.medications]],
     ["Social style", a.socialStyle.replace(/-/g, " ")],
     ["Vibe / Competitive / Structure", `${a.vibe} / ${a.competitiveness} / ${a.structure} (1–5)`],
+    ["Culture (down-to-earth ↔ upscale)", `${a.culture}/5`],
     ["Gender preference", a.genderPref === "any" ? "No preference" : a.genderPref],
     ["Community", a.religious === "any" ? "No preference" : RELIGIOUS_LABELS[a.religious]],
     ["Camp size", a.sizePref === "any" ? "No preference" : a.sizePref],
+    ["Uniform", UNIFORM_PREF_LABELS[a.uniformPref]],
+    ["Must-haves", a.mustHaves.length ? a.mustHaves.map((m) => COMFORT_LABELS[m]).join(", ") : "None"],
+    ["Phone calls", PHONE_PREF_LABELS[a.phoneCallPref]],
+    ["Visiting day", VISITING_PREF_LABELS[a.visitingDayPref]],
     ["First-time camper", a.firstTime ? "Yes" : "No"],
     ["Support needs", a.supports.length ? a.supports.map((s) => SUPPORT_LABELS[s]).join(", ") : "None"],
   ];
@@ -407,7 +423,8 @@ export function AdminDashboard() {
         setQuizzes(
           (quizRes.data ?? []).map((r) => ({
             id: String(r.id),
-            answers: r.answers as QuizAnswers,
+            // Older rows may predate the current questionnaire (e.g. budget era).
+            answers: normalizeAnswers(r.answers),
             createdAt: r.created_at,
           })),
         );
@@ -613,7 +630,7 @@ export function AdminDashboard() {
             <input
               type="email"
               required
-              placeholder="you@campmatch.com"
+              placeholder="you@campmatching.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={inputCls()}
@@ -648,7 +665,7 @@ export function AdminDashboard() {
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-ember">CampMatch admin</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-ember">Camp Matching admin</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             Operations dashboard
           </h1>
@@ -808,7 +825,7 @@ function FormsTab({
     <>
       <SectionCard
         title={`Quiz forms (${quizzes.length})`}
-        subtitle="Every completed parent match quiz, newest first."
+        subtitle="Every completed parent questionnaire, newest first."
       >
         {quizzes.length === 0 ? (
           <p className="text-sm text-ink-soft">No completed quizzes yet.</p>
@@ -1308,16 +1325,22 @@ function CampsTab({
 
 const WEIGHT_ROWS: { key: keyof typeof MATCHING_WEIGHTS; label: string; note: string }[] = [
   { key: "interests", label: "Interests overlap", note: "Shared activities between the child and the camp — the heaviest signal." },
+  { key: "hobbies", label: "Specific hobbies", note: "Free-text hobbies matched against the camp's compiled activity list; skipped when the list isn't compiled yet." },
   { key: "sessionLength", label: "Session length", note: "Only scored for sleepaway seekers with a session preference." },
+  { key: "splitSession", label: "Split-summer option", note: "Only when the family wants a partial summer (e.g. 3+3) and the camp's session model is compiled." },
   { key: "distance", label: "Distance from home", note: "Only scored when the home state is known; camps >125% over the cap are dropped." },
   { key: "vibe", label: "Vibe (rustic ↔ modern)", note: "1–5 scale closeness between family preference and camp." },
-  { key: "competitiveness", label: "Competitiveness", note: "1–5 scale closeness; a camp 3+ points more intense gets a caution." },
-  { key: "religious", label: "Community / religious fit", note: "Exact community matches score highest; mismatches are penalized." },
-  { key: "supports", label: "Support needs", note: "Only scored when soft support needs are flagged (allergies, ADHD, anxiety)." },
-  { key: "budget", label: "Budget", note: "Camps starting >20% over the budget cap are dropped entirely." },
+  { key: "culture", label: "Culture (down-to-earth ↔ upscale)", note: "Compiled culture score when we have it; otherwise estimated from price point & amenities." },
+  { key: "competitiveness", label: "Competitiveness × activity level", note: "1–5 closeness against a blend of the family's slider and the child's activity level." },
   { key: "structure", label: "Structure (scheduled ↔ elective)", note: "1–5 scale closeness." },
   { key: "sizeSocial", label: "Camp size × social style", note: "Size preference, nudged by the child's social style." },
-  { key: "firstTime", label: "First-time camper fit", note: "Only scored for first-timers; rewards intro programs and shorter starter sessions." },
+  { key: "religious", label: "Community / religious fit", note: "Exact community matches score highest; mismatches are penalized." },
+  { key: "comforts", label: "Must-have comforts", note: "AC, lake, laundry, doctor, bus, trunk pickup. Confirmed-missing is a hard filter; not-yet-compiled scores neutral with a caution." },
+  { key: "health", label: "Medications & medical staffing", note: "Only for kids on daily medication; rewards a doctor on site." },
+  { key: "contact", label: "Phone calls & visiting day", note: "Only when the camp's contact policy is compiled and the family cares." },
+  { key: "uniform", label: "Uniform policy", note: "Only when the family has a preference and the camp's policy is compiled." },
+  { key: "supports", label: "Support needs", note: "Only scored when soft support needs are flagged (allergies, ADHD, anxiety)." },
+  { key: "firstTime", label: "First-time camper fit", note: "Only scored for first-timers; rewards intro programs, starter sessions and rookie days." },
 ];
 
 const HARD_FILTERS = [
@@ -1326,29 +1349,11 @@ const HARD_FILTERS = [
   "Gender must be compatible (child gender vs. boys/girls camps, plus the family's co-ed / single-gender preference).",
   "Kosher/Shabbat-observant families only see observant camps.",
   "Families needing an inclusion / special-needs program only see camps that offer one.",
+  "Camps CONFIRMED to lack one of the family's must-haves are dropped (unknown data survives with a caution).",
   "Camps more than 25% beyond the family's distance cap are dropped.",
-  "Camps whose cheapest session is more than 20% over the budget cap are dropped.",
 ];
 
-const SANDBOX_DEFAULTS: QuizAnswers = {
-  childAge: 10,
-  childGender: "any",
-  campType: "both",
-  sessionWeeks: "flexible",
-  homeState: "NJ",
-  maxDistance: "3h",
-  budget: "any",
-  interests: [],
-  socialStyle: "jumps-in",
-  vibe: 3,
-  competitiveness: 3,
-  structure: 3,
-  genderPref: "any",
-  religious: "any",
-  sizePref: "any",
-  firstTime: false,
-  supports: [],
-};
+const SANDBOX_DEFAULTS: QuizAnswers = DEFAULT_ANSWERS;
 
 function MatchingTab({ camps }: { camps: AdminCamp[] }) {
   const [q, setQ] = useState<QuizAnswers>(SANDBOX_DEFAULTS);
@@ -1463,12 +1468,8 @@ function MatchingTab({ camps }: { camps: AdminCamp[] }) {
             </select>
           </label>
           <label className="text-sm">
-            <span className="mb-1 block font-semibold text-ink">Budget</span>
-            <select value={q.budget} onChange={(e) => set("budget", e.target.value as QuizAnswers["budget"])} className={inputCls()}>
-              {Object.entries(BUDGET_LABELS).map(([code, label]) => (
-                <option key={code} value={code}>{label}</option>
-              ))}
-            </select>
+            <span className="mb-1 block font-semibold text-ink">Culture — <span className="text-ember">{q.culture}</span> (down-to-earth ↔ upscale)</span>
+            <input type="range" min={1} max={5} value={q.culture} onChange={(e) => set("culture", Number(e.target.value))} className="w-full accent-ember" />
           </label>
           <label className="text-sm">
             <span className="mb-1 block font-semibold text-ink">Vibe — <span className="text-ember">{q.vibe}</span> (rustic ↔ modern)</span>
@@ -1527,7 +1528,7 @@ function MatchingTab({ camps }: { camps: AdminCamp[] }) {
           <p className="text-sm text-ink">
             <strong>{results.length}</strong> of <strong>{camps.length}</strong> camps would be shown
             to this family — {camps.length - passedHard} removed by hard filters,{" "}
-            {passedHard - results.length} dropped for distance/budget overruns.
+            {passedHard - results.length} dropped for distance overruns.
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-5">
             {bands.map((b) => (

@@ -189,7 +189,7 @@ export function CampPortal() {
           Get matched with the families your camp was built for.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-          CampMatch introduces parents to camps by compatibility, not ad spend.
+          Camp Matching introduces parents to camps by compatibility, not ad spend.
           Claim your listing (or create one), verify your details, and show up
           in the right families&apos; match lists — free.
         </p>
@@ -248,7 +248,7 @@ export function CampPortal() {
       <section className="mt-8 rounded-3xl border border-ink/10 bg-white p-6 shadow-lift sm:p-8">
         <h2 className="text-2xl font-semibold text-pine">2 · Claim your existing listing</h2>
         <p className="mt-2 text-ink-soft">
-          Already on CampMatch? Search for your camp and claim it.
+          Already on Camp Matching? Search for your camp and claim it.
         </p>
         <input
           type="search"

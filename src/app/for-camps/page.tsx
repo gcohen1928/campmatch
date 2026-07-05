@@ -5,7 +5,7 @@ import { CampPortal } from "./CampPortal";
 export const metadata: Metadata = {
   title: "For camps — claim or create your listing",
   description:
-    "Camp directors: claim your CampMatch listing or create a new one, verify your details, and reach matched families.",
+    "Camp directors: claim your Camp Matching listing or create a new one, verify your details, and reach matched families.",
 };
 
 export default function ForCampsPage() {
