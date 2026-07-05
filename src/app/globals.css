@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* CampMatch palette — direction 1c "Warm Graphic Remix" */
+  /* Camp Matching palette — direction 1c "Warm Graphic Remix" */
   --color-cream: #f7f1e4;
   --color-cream-dark: #efe5d0;
   --color-ink: #1e3b2c;
@@ -59,7 +59,7 @@ h1, h2, h3, .font-display {
   animation: ring-fill 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Leaflet map — match CampMatch styling */
+/* Leaflet map — match Camp Matching styling */
 .leaflet-container {
   font-family: var(--font-body);
 }

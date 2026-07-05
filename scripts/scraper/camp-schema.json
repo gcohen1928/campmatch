@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "CampMatch extraction schema",
-  "description": "Target shape for LLM extraction from a camp's website. Mirrors src/lib/types.ts Camp.",
+  "title": "Camp Matching extraction schema",
+  "description": "Target shape for LLM extraction from a camp's website. Mirrors src/lib/types.ts Camp. Life-at-camp fields (culture, acInBunks, rookieDay, …) must be OMITTED when the source pages don't state them — never guessed; the app renders missing values as 'not compiled yet'.",
   "type": "object",
   "required": ["name", "type", "city", "state"],
   "properties": {
@@ -62,6 +62,51 @@
         }
       }
     },
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "extraction confidence; <0.6 goes to manual review" }
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "extraction confidence; <0.6 goes to manual review" },
+
+    "culture": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1 down-to-earth & low-key … 5 polished/upscale/scene-y (infer from tone, pricing, amenities)" },
+    "activities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 40,
+      "description": "SPECIFIC offerings as listed by the camp, lowercase — e.g. 'waterski', 'ice hockey', 'go-karts', 'ceramics', 'climbing tower'. Not general categories."
+    },
+    "lakeOnSite": { "type": "boolean", "description": "private lake on the property (a pool is not a lake)" },
+    "acInBunks": { "type": "boolean", "description": "camper bunks/cabins are air-conditioned" },
+    "bunkSize": { "type": "integer", "minimum": 2, "maximum": 30, "description": "campers per bunk/cabin" },
+    "laundryService": { "type": "boolean", "description": "camp does campers' laundry" },
+    "uniformRequired": { "type": "boolean", "description": "uniform/required clothing families must buy" },
+    "doctorOnSite": { "type": "boolean", "description": "physician on site (not just nurses)" },
+    "visitingDaysPerSession": { "type": "integer", "minimum": 0, "maximum": 6 },
+    "phoneCallsPerSession": { "type": "integer", "minimum": 0, "maximum": 30, "description": "scheduled camper phone calls home per session" },
+    "sessionModel": {
+      "enum": ["full-summer", "sessions", "flexible"],
+      "description": "flexible = partial-summer splits offered (e.g. 3+3)"
+    },
+    "tripsPerSession": { "type": "integer", "minimum": 0, "maximum": 15, "description": "out-of-camp trips per session" },
+    "traditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 10,
+      "description": "signature all-camp events, e.g. 'Color War', 'College Days', 'Sing'"
+    },
+    "ownership": {
+      "enum": ["family", "nonprofit", "agency"],
+      "description": "family = privately owned; agency = federation / Y / scout-sponsored"
+    },
+    "lastRenovated": { "type": "integer", "minimum": 1950, "maximum": 2030, "description": "most recent major facilities renovation year" },
+    "busService": { "type": "boolean" },
+    "busCities": { "type": "array", "items": { "type": "string" }, "maxItems": 15, "description": "metro areas buses depart from" },
+    "trunkPickup": { "type": "boolean" },
+    "trunkPickupAreas": { "type": "array", "items": { "type": "string" }, "maxItems": 15 },
+    "rookieDay": {
+      "type": "object",
+      "required": ["offered"],
+      "properties": {
+        "offered": { "type": "boolean" },
+        "details": { "type": "string", "maxLength": 300, "description": "when it runs / how to sign up, incl. scraped dates" },
+        "url": { "type": "string", "format": "uri", "description": "the camp's rookie-day / visit page" }
+      }
+    }
   }
 }

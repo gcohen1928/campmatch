@@ -6,7 +6,7 @@ import { useState } from "react";
 import { LogoMark } from "./Logo";
 
 const NAV = [
-  { href: "/quiz", label: "The quiz" },
+  { href: "/quiz", label: "The questionnaire" },
   { href: "/camps", label: "Browse camps" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/for-camps", label: "For camps" },
@@ -21,11 +21,11 @@ export function Header() {
       <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 py-4 sm:px-6 lg:px-12">
         <Link
           href="/"
-          aria-label="CampMatch home"
+          aria-label="Camp Matching home"
           className="flex items-center gap-2 font-display text-[23px] font-semibold text-ink"
         >
           <LogoMark className="h-8 w-8 text-pine" />
-          CampMatch
+          Camp Matching
         </Link>
         <nav className="hidden items-center gap-1.5 rounded-full border border-ink/12 bg-white p-1.5 text-[13.5px] font-medium md:flex">
           {NAV.map((item) => (
@@ -78,7 +78,7 @@ export function Header() {
 }
 
 const FOOTER_LINKS = [
-  { href: "/quiz", label: "Take the quiz" },
+  { href: "/quiz", label: "Take the questionnaire" },
   { href: "/camps", label: "Browse camps" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/for-camps", label: "Claim your camp" },
@@ -91,7 +91,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-5 px-4 py-10 sm:flex-row sm:px-6 lg:px-12">
         <Link href="/" className="flex items-center gap-2 font-display text-[19px] font-semibold text-ink">
           <LogoMark className="h-6 w-6 text-pine" />
-          CampMatch
+          Camp Matching
         </Link>
         <nav className="flex flex-wrap justify-center gap-x-[30px] gap-y-2 text-[13.5px] text-ink/65">
           {FOOTER_LINKS.map((item) => (

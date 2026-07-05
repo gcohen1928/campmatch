@@ -17,15 +17,15 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: {
-    default: "CampMatch — Find the summer camp your kid was made for",
-    template: "%s · CampMatch",
+    default: "Camp Matching — Find the summer camp your kid was made for",
+    template: "%s · Camp Matching",
   },
   description:
-    "Match.com for summer camps. Take a 3-minute quiz about your child and get matched with the sleepaway and day camps across the USA where they'll thrive.",
+    "Match.com for summer camps. Answer a 3-minute questionnaire about your child and get matched with the sleepaway and day camps across the USA where they'll thrive.",
   openGraph: {
-    title: "CampMatch — Find the summer camp your kid was made for",
+    title: "Camp Matching — Find the summer camp your kid was made for",
     description:
-      "Take a 3-minute quiz and get matched with the perfect sleepaway or day camp.",
+      "Answer a 3-minute questionnaire and get matched with the perfect sleepaway or day camp.",
     type: "website",
   },
 };

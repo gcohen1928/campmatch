@@ -1,4 +1,4 @@
-# CampMatch data pipeline
+# Camp Matching data pipeline
 
 The app ships with two data layers, merged at build time by
 `src/lib/camps-data.ts`:
@@ -22,6 +22,7 @@ snapshots compiled from public web sentiment, not verified reviews.
 | --- | --- |
 | `merge-batches.ts` | Validate/normalize/dedupe research-agent batch files into `src/data/*.json`. `pnpm dlx tsx scripts/scraper/merge-batches.ts <batches-dir>` |
 | `fetch-camps.ts` | Politely download camp pages for LLM extraction (`camp-schema.json` is the target shape). |
+| `enrich-camps.ts` | **Enrich the camps we already have** with life-at-camp details (rookie days, AC, bunk size, laundry, uniforms, doctor, visiting days, phone policy, session model / 3+3 splits, trips, traditions, ownership, renovations, buses, trunk pickup, specific activities). `fetch` bundles each camp's key subpages into text; LLM-extract against `camp-schema.json`; `merge` validates and fills the new optional fields on `camps.extra.json`. |
 | `reddit-reviews.ts` | Search Reddit's public JSON API for real threads about every camp in the dataset → `out/reddit/<slug>.json`, ready for an LLM distillation pass into `reviews.json`. |
 | `fetch-photos.ts` | Grab each camp website's own `og:image` social-preview photo → `out/photos.json`, to merge into the `photos` field. |
 | `load-to-supabase.ts` | Upsert the full dataset + reviews into Supabase (needs migrations 0001+0002 and a service-role key). |
@@ -29,6 +30,38 @@ snapshots compiled from public web sentiment, not verified reviews.
 > **Note:** the network-restricted CI/agent sandbox can't reach Reddit or camp
 > websites — run `reddit-reviews.ts` and `fetch-photos.ts` from a normal
 > machine. Both are rate-limited to ~1 req/sec with an honest User-Agent.
+
+## Enriching ALL existing camps (incl. rookie days)
+
+The app's matching + detail pages now use ~20 optional life-at-camp fields.
+They ship `undefined` (= "not compiled yet", shown honestly in the UI), and
+get filled by this loop — run from a normal machine (the sandbox can't reach
+camp websites):
+
+```
+# 1. Bundle page text for every camp with a website (resumable; ~2s/page)
+npx tsx scripts/scraper/enrich-camps.ts fetch out/enrich --limit=200
+
+# 2. LLM extraction (external): for each out/enrich/<slug>.json, prompt an
+#    LLM with camp-schema.json, temperature 0, "omit anything not stated on
+#    the pages — never guess". Rookie-day pages are prioritized by the
+#    fetcher (any URL containing "rookie", "visit", "open house", "tour").
+#    Save arrays of {slug, ...fields} to out/enriched/batch-*.json.
+
+# 3. Validate & apply (existing values win unless --overwrite)
+npx tsx scripts/scraper/enrich-camps.ts merge out/enriched
+```
+
+Coverage expectations: websites state uniforms/laundry/buses/visiting-day
+policy far more often than bunk AC or bunk size — expect 60–80% coverage on
+policy fields and 20–40% on facility fields per pass. Fill the rest from
+parent handbooks (often PDFs — a second fetch pass), the ACA "Find a Camp"
+profile pages, and eventually camps verifying their own listings, which is
+the real endgame for data quality.
+
+Rookie days specifically: most camps publish them under `/rookie-day`,
+`/visit`, `/open-house` or in the FAQ; dates change every year, so re-run the
+fetch each winter/spring and let the extractor refresh `rookieDay.details`.
 
 ## Growing the dataset further
 

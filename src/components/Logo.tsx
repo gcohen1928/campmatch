@@ -17,7 +17,7 @@ export function Logo({ light = false }: { light?: boolean }) {
     <span className={`flex items-center gap-2 ${light ? "text-cream" : "text-pine"}`}>
       <LogoMark className="h-8 w-8" />
       <span className="font-display text-xl font-semibold tracking-tight">
-        CampMatch
+        Camp Matching
       </span>
     </span>
   );

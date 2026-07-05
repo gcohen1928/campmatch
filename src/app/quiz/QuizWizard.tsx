@@ -2,11 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Interest, QuizAnswers, SupportNeed } from "@/lib/types";
+import type { Comfort, Interest, QuizAnswers, SupportNeed } from "@/lib/types";
 import { STATE_CENTROIDS } from "@/lib/geo";
 import {
-  BUDGET_LABELS,
+  COMFORT_EMOJI,
+  COMFORT_LABELS,
+  DEFAULT_ANSWERS,
   DISTANCE_LABELS,
+  EATING_LABELS,
   INTEREST_EMOJI,
   INTEREST_LABELS,
   SUPPORT_LABELS,
@@ -104,29 +107,9 @@ function Slider({
 
 /* ── The wizard ──────────────────────────────────────────────────────── */
 
-const DEFAULTS: QuizAnswers = {
-  childAge: 10,
-  childGender: "any",
-  campType: "both",
-  sessionWeeks: "flexible",
-  homeState: "NJ",
-  maxDistance: "3h",
-  budget: "any",
-  interests: [],
-  socialStyle: "jumps-in",
-  vibe: 3,
-  competitiveness: 3,
-  structure: 3,
-  genderPref: "any",
-  religious: "any",
-  sizePref: "any",
-  firstTime: false,
-  supports: [],
-};
-
 export function QuizWizard() {
   const router = useRouter();
-  const [a, setA] = useState<QuizAnswers>(DEFAULTS);
+  const [a, setA] = useState<QuizAnswers>(DEFAULT_ANSWERS);
   const [step, setStep] = useState(0);
 
   const set = <K extends keyof QuizAnswers>(k: K, v: QuizAnswers[K]) =>
@@ -181,6 +164,47 @@ export function QuizWizard() {
         ),
       },
       {
+        key: "daily",
+        title: "Your kid, day to day",
+        subtitle: "Energy, appetite and anything the health center should know.",
+        valid: true,
+        body: (
+          <div className="space-y-8">
+            <Slider value={a.activityLevel} onChange={(n) => set("activityLevel", n)} left="Mellow — happy with a book" right="In motion all day long" />
+            <div>
+              <p className="mb-3 font-semibold text-ink">In a brand-new group, your kid…</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <OptionCard emoji="🚀" title="Jumps right in" subtitle="Makes three friends by lunch" selected={a.socialStyle === "jumps-in"} onClick={() => set("socialStyle", "jumps-in")} compact />
+                <OptionCard emoji="🌱" title="Warms up slowly" subtitle="Needs a few days, then blooms" selected={a.socialStyle === "warms-up"} onClick={() => set("socialStyle", "warms-up")} compact />
+                <OptionCard emoji="🤝" title="Thrives in small groups" subtitle="A few close friends over a crowd" selected={a.socialStyle === "small-groups"} onClick={() => set("socialStyle", "small-groups")} compact />
+                <OptionCard emoji="🎉" title="Loves a big crowd" subtitle="The more the merrier" selected={a.socialStyle === "big-energy"} onClick={() => set("socialStyle", "big-energy")} compact />
+              </div>
+            </div>
+            <div>
+              <p className="mb-3 font-semibold text-ink">Eating habits?</p>
+              <p className="mb-3 text-sm text-ink-soft">Camp menus vary a lot — this helps us flag what to ask about.</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <OptionCard emoji="😋" title={EATING_LABELS.adventurous} selected={a.eatingHabits === "adventurous"} onClick={() => set("eatingHabits", "adventurous")} compact />
+                <OptionCard emoji="🍕" title={EATING_LABELS.typical} selected={a.eatingHabits === "typical"} onClick={() => set("eatingHabits", "typical")} compact />
+                <OptionCard emoji="🥪" title={EATING_LABELS.picky} selected={a.eatingHabits === "picky"} onClick={() => set("eatingHabits", "picky")} compact />
+                <OptionCard emoji="🍞" title={EATING_LABELS["very-picky"]} subtitle="We'll remind you to ask about menus & alternatives" selected={a.eatingHabits === "very-picky"} onClick={() => set("eatingHabits", "very-picky")} compact />
+              </div>
+            </div>
+            <div>
+              <p className="mb-3 font-semibold text-ink">Do they take any medications?</p>
+              <p className="mb-3 text-sm text-ink-soft">
+                Every camp handles meds differently — some need a doctor on site. We never share this without your say-so.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <OptionCard title="No" selected={a.medications === "none"} onClick={() => set("medications", "none")} compact />
+                <OptionCard title="Occasional / as-needed" subtitle="e.g. an EpiPen or inhaler" selected={a.medications === "occasional"} onClick={() => set("medications", "occasional")} compact />
+                <OptionCard title="Daily medication" subtitle="We'll favor camps with stronger medical staffing" selected={a.medications === "daily"} onClick={() => set("medications", "daily")} compact />
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
         key: "type",
         title: "Day camp or sleepaway?",
         subtitle: "The single biggest fork in the road.",
@@ -193,15 +217,27 @@ export function QuizWizard() {
               <OptionCard emoji="🤷" title="Show me both" subtitle="We're still deciding" selected={a.campType === "both"} onClick={() => set("campType", "both")} />
             </div>
             {!isDayOnly && (
-              <div>
-                <p className="mb-3 font-semibold text-ink">How long a session feels right?</p>
-                <div className="grid gap-3 sm:grid-cols-4">
-                  <OptionCard title="~2 weeks" subtitle="A taste" selected={a.sessionWeeks === "2"} onClick={() => set("sessionWeeks", "2")} compact />
-                  <OptionCard title="~4 weeks" subtitle="Half summer" selected={a.sessionWeeks === "4"} onClick={() => set("sessionWeeks", "4")} compact />
-                  <OptionCard title="7+ weeks" subtitle="Full summer" selected={a.sessionWeeks === "7"} onClick={() => set("sessionWeeks", "7")} compact />
-                  <OptionCard title="Flexible" selected={a.sessionWeeks === "flexible"} onClick={() => set("sessionWeeks", "flexible")} compact />
+              <>
+                <div>
+                  <p className="mb-3 font-semibold text-ink">How long a session feels right?</p>
+                  <div className="grid gap-3 sm:grid-cols-4">
+                    <OptionCard title="~2 weeks" subtitle="A taste" selected={a.sessionWeeks === "2"} onClick={() => set("sessionWeeks", "2")} compact />
+                    <OptionCard title="~4 weeks" subtitle="Half summer" selected={a.sessionWeeks === "4"} onClick={() => set("sessionWeeks", "4")} compact />
+                    <OptionCard title="7+ weeks" subtitle="Full summer" selected={a.sessionWeeks === "7"} onClick={() => set("sessionWeeks", "7")} compact />
+                    <OptionCard title="Flexible" selected={a.sessionWeeks === "flexible"} onClick={() => set("sessionWeeks", "flexible")} compact />
+                  </div>
                 </div>
-              </div>
+                <div>
+                  <p className="mb-3 font-semibold text-ink">Want the option to split the summer?</p>
+                  <p className="mb-3 text-sm text-ink-soft">
+                    &ldquo;Session camps&rdquo; let kids come for part of the summer (like a 3+3 split); full-summer camps expect everyone to stay the whole time.
+                  </p>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <OptionCard emoji="✂️" title="Yes — partial summer should be possible" selected={a.wantsSplitOption} onClick={() => set("wantsSplitOption", true)} compact />
+                    <OptionCard emoji="🌞" title="No — full session is fine" selected={!a.wantsSplitOption} onClick={() => set("wantsSplitOption", false)} compact />
+                  </div>
+                </div>
+              </>
             )}
           </div>
         ),
@@ -209,7 +245,7 @@ export function QuizWizard() {
       {
         key: "logistics",
         title: "The practical stuff",
-        subtitle: "Where you live, how far you'll go, what you'll spend.",
+        subtitle: "Where you live and how far you'll go.",
         valid: true,
         body: (
           <div className="space-y-8">
@@ -234,14 +270,6 @@ export function QuizWizard() {
                 ))}
               </div>
             </div>
-            <div>
-              <p className="mb-3 font-semibold text-ink">Budget for the summer</p>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {(Object.keys(BUDGET_LABELS) as (keyof typeof BUDGET_LABELS)[]).map((k) => (
-                  <OptionCard key={k} title={BUDGET_LABELS[k]} selected={a.budget === k} onClick={() => set("budget", k as QuizAnswers["budget"])} compact />
-                ))}
-              </div>
-            </div>
           </div>
         ),
       },
@@ -251,53 +279,68 @@ export function QuizWizard() {
         subtitle: "Pick up to 5 — the things they'd do all day if you let them.",
         valid: a.interests.length > 0,
         body: (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {(Object.keys(INTEREST_LABELS) as Interest[]).map((i) => (
-              <OptionCard
-                key={i}
-                emoji={INTEREST_EMOJI[i]}
-                title={INTEREST_LABELS[i]}
-                selected={a.interests.includes(i)}
-                onClick={() =>
-                  set(
-                    "interests",
-                    a.interests.includes(i) || a.interests.length < 5
-                      ? toggle(a.interests, i)
-                      : a.interests,
-                  )
-                }
-                compact
+          <div className="space-y-8">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {(Object.keys(INTEREST_LABELS) as Interest[]).map((i) => (
+                <OptionCard
+                  key={i}
+                  emoji={INTEREST_EMOJI[i]}
+                  title={INTEREST_LABELS[i]}
+                  selected={a.interests.includes(i)}
+                  onClick={() =>
+                    set(
+                      "interests",
+                      a.interests.includes(i) || a.interests.length < 5
+                        ? toggle(a.interests, i)
+                        : a.interests,
+                    )
+                  }
+                  compact
+                />
+              ))}
+            </div>
+            <div>
+              <label htmlFor="hobbies" className="mb-2 block font-semibold text-ink">
+                Any specific hobbies? <span className="font-normal text-ink-soft">(optional)</span>
+              </label>
+              <p className="mb-3 text-sm text-ink-soft">
+                The specifics matter — &ldquo;waterski&rdquo;, &ldquo;ice hockey&rdquo;, &ldquo;ceramics&rdquo;, &ldquo;go-karts&rdquo;. We match these against each camp&apos;s actual activity list.
+              </p>
+              <input
+                id="hobbies"
+                type="text"
+                value={a.hobbies}
+                onChange={(e) => set("hobbies", e.target.value)}
+                placeholder="e.g. waterski, hockey, ceramics"
+                className="w-full rounded-xl border-2 border-ink/10 bg-white px-4 py-3 font-medium text-ink placeholder:text-ink-soft/60 focus:border-ember focus:outline-none"
               />
-            ))}
+            </div>
           </div>
         ),
       },
       {
         key: "personality",
-        title: "Their personality",
+        title: "The camp personality you want",
         subtitle: "This is where the matchmaking magic happens.",
         valid: true,
         body: (
           <div className="space-y-8">
-            <div>
-              <p className="mb-3 font-semibold text-ink">In a brand-new group, your kid…</p>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <OptionCard emoji="🚀" title="Jumps right in" subtitle="Makes three friends by lunch" selected={a.socialStyle === "jumps-in"} onClick={() => set("socialStyle", "jumps-in")} compact />
-                <OptionCard emoji="🌱" title="Warms up slowly" subtitle="Needs a few days, then blooms" selected={a.socialStyle === "warms-up"} onClick={() => set("socialStyle", "warms-up")} compact />
-                <OptionCard emoji="🤝" title="Thrives in small groups" subtitle="A few close friends over a crowd" selected={a.socialStyle === "small-groups"} onClick={() => set("socialStyle", "small-groups")} compact />
-                <OptionCard emoji="🎉" title="Loves a big crowd" subtitle="The more the merrier" selected={a.socialStyle === "big-energy"} onClick={() => set("socialStyle", "big-energy")} compact />
-              </div>
-            </div>
             <Slider value={a.competitiveness} onChange={(n) => set("competitiveness", n)} left="Everyone-plays chill" right="Loves to compete" />
             <Slider value={a.structure} onChange={(n) => set("structure", n)} left="Thrives on routine" right="Wants to choose their day" />
             <Slider value={a.vibe} onChange={(n) => set("vibe", n)} left="Rustic & classic" right="Modern comforts" />
+            <div>
+              <Slider value={a.culture} onChange={(n) => set("culture", n)} left="Down-to-earth crowd" right="Upscale & flashy" />
+              <p className="mt-2 text-sm text-ink-soft">
+                Be honest — every camp has a social scene, and the right one is the one where your family fits.
+              </p>
+            </div>
           </div>
         ),
       },
       {
         key: "community",
         title: "The community you want",
-        subtitle: "Almost done — the culture questions.",
+        subtitle: "Culture questions — who your kid will be surrounded by.",
         valid: true,
         body: (
           <div className="space-y-8">
@@ -328,6 +371,63 @@ export function QuizWizard() {
                 <OptionCard title="No preference" selected={a.sizePref === "any"} onClick={() => set("sizePref", "any")} compact />
               </div>
             </div>
+            <div>
+              <p className="mb-3 font-semibold text-ink">Uniforms?</p>
+              <p className="mb-3 text-sm text-ink-soft">Some camps require a uniform (you buy it); others are pack-your-own.</p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <OptionCard title="Prefer no uniform" selected={a.uniformPref === "no-uniform"} onClick={() => set("uniformPref", "no-uniform")} compact />
+                <OptionCard title="Uniforms are a plus" subtitle="Simpler & less clothing competition" selected={a.uniformPref === "uniform-fine"} onClick={() => set("uniformPref", "uniform-fine")} compact />
+                <OptionCard title="No preference" selected={a.uniformPref === "any"} onClick={() => set("uniformPref", "any")} compact />
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        key: "comforts",
+        title: "Comforts, logistics & staying in touch",
+        subtitle: "The details nobody tells you to ask about — until now.",
+        valid: true,
+        body: (
+          <div className="space-y-8">
+            <div>
+              <p className="mb-1 font-semibold text-ink">Any absolute must-haves?</p>
+              <p className="mb-3 text-sm text-ink-soft">
+                For context: most bunks have <em>no</em> AC, weekly laundry is standard at overnight camps, and buses/trunk pickup are common near big metros. Camps confirmed to lack a must-have are filtered out; ones we haven&apos;t compiled yet get flagged so you can ask.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {(Object.keys(COMFORT_LABELS) as Comfort[]).map((c) => (
+                  <OptionCard
+                    key={c}
+                    emoji={COMFORT_EMOJI[c]}
+                    title={COMFORT_LABELS[c]}
+                    selected={a.mustHaves.includes(c)}
+                    onClick={() => set("mustHaves", toggle(a.mustHaves, c))}
+                    compact
+                  />
+                ))}
+              </div>
+            </div>
+            {a.campType !== "day" && (
+              <>
+                <div>
+                  <p className="mb-3 font-semibold text-ink">How often do you want to hear their voice?</p>
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <OptionCard emoji="📞" title="Regular calls" subtitle="A few per session" selected={a.phoneCallPref === "frequent"} onClick={() => set("phoneCallPref", "frequent")} compact />
+                    <OptionCard emoji="☎️" title="A call or two" subtitle="The typical camp policy" selected={a.phoneCallPref === "occasional"} onClick={() => set("phoneCallPref", "occasional")} compact />
+                    <OptionCard emoji="💌" title="Letters are fine" subtitle="They'll be busy anyway" selected={a.phoneCallPref === "letters-fine"} onClick={() => set("phoneCallPref", "letters-fine")} compact />
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-3 font-semibold text-ink">Visiting day?</p>
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <OptionCard title="A must" selected={a.visitingDayPref === "must"} onClick={() => set("visitingDayPref", "must")} compact />
+                    <OptionCard title="Nice to have" selected={a.visitingDayPref === "nice"} onClick={() => set("visitingDayPref", "nice")} compact />
+                    <OptionCard title="No preference" selected={a.visitingDayPref === "any"} onClick={() => set("visitingDayPref", "any")} compact />
+                  </div>
+                </div>
+              </>
+            )}
             <div>
               <p className="mb-3 font-semibold text-ink">Anything the camp should be ready to support?</p>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -360,7 +460,7 @@ export function QuizWizard() {
           <p className="text-sm font-semibold uppercase tracking-wider text-ember">
             Step {step + 1} of {steps.length}
           </p>
-          <p className="text-sm text-ink-soft">The Camp Match Quiz</p>
+          <p className="text-sm text-ink-soft">The Camp Matching Questionnaire</p>
         </div>
         <div className="mt-2 h-2 overflow-hidden rounded-full bg-ink/10">
           <div
@@ -394,7 +494,7 @@ export function QuizWizard() {
             onClick={finish}
             className="rounded-full bg-ember px-8 py-3.5 font-semibold text-white shadow-lift-lg transition hover:bg-ember-deep"
           >
-            See my matches 💘
+            See my top matches 💘
           </button>
         ) : (
           <button

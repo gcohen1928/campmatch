@@ -103,7 +103,7 @@ export function CampsExplorer() {
           <p className="mt-2 text-lg text-ink-soft">
             {CAMPS.length.toLocaleString()} camps and counting. Want a ranked list instead?{" "}
             <Link href="/quiz" className="font-semibold text-ember hover:text-ember-deep">
-              Take the match quiz →
+              Take the questionnaire →
             </Link>
           </p>
         </div>
