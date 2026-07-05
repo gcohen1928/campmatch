@@ -235,7 +235,7 @@ async function runExtract(args: string[]) {
   const model = args.find((a) => a.startsWith("--model"))?.split("=")[1] ?? "claude-opus-4-8";
 
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
-  const client = new Anthropic();
+  const client = new Anthropic({ timeout: 120_000, maxRetries: 3 });
 
   await mkdir(outDir, { recursive: true });
   const done = new Set(
