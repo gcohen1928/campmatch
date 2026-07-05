@@ -178,53 +178,104 @@ async function runFetch(args: string[]) {
  * Structured-output schema for one camp's enrichment. A trimmed version of
  * camp-schema.json: structured outputs don't support numeric/string
  * constraints, so range clamping happens in cleanEnrichment() at merge time.
- * Nothing is required — the model omits any field the pages don't state.
+ *
+ * Every field is required with an explicit "not stated" sentinel ("unknown",
+ * -1, "", []) instead of being optional: the structured-outputs grammar
+ * compiler rejects this many optional properties ("Schema is too complex")
+ * and caps union types at ~22 ("too many parameters with union types"), so
+ * all-required + sentinels is the only shape of this size it accepts.
+ * desentinel() strips the sentinels so downstream records keep the original
+ * omitted-field semantics.
  */
+const TRI_BOOL = { enum: ["true", "false", "unknown"] };
 const EXTRACT_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["slug"],
+  required: [
+    "slug", "culture", "activities", "lakeOnSite", "acInBunks", "bunkSize",
+    "laundryService", "uniformRequired", "doctorOnSite", "visitingDaysPerSession",
+    "phoneCallsPerSession", "sessionModel", "tripsPerSession", "traditions",
+    "ownership", "lastRenovated", "busService", "busCities", "trunkPickup",
+    "trunkPickupAreas", "rookieDayOffered", "rookieDayDetails", "rookieDayUrl",
+  ],
   properties: {
     slug: { type: "string" },
-    culture: { type: "integer", description: "1 down-to-earth & low-key … 5 polished/upscale/scene-y; only when the site's tone/pricing make it clear" },
-    activities: { type: "array", items: { type: "string" }, description: "specific offerings as listed, lowercase — 'waterski', 'ice hockey', 'go-karts'; not general categories" },
-    lakeOnSite: { type: "boolean", description: "private lake on the property (a pool is not a lake)" },
-    acInBunks: { type: "boolean", description: "camper bunks/cabins are air-conditioned" },
-    bunkSize: { type: "integer", description: "campers per bunk/cabin" },
-    laundryService: { type: "boolean", description: "camp does campers' laundry" },
-    uniformRequired: { type: "boolean", description: "required uniform/clothing families must buy" },
-    doctorOnSite: { type: "boolean", description: "physician on site, not just nurses" },
-    visitingDaysPerSession: { type: "integer" },
-    phoneCallsPerSession: { type: "integer", description: "scheduled camper phone calls home per session" },
-    sessionModel: { enum: ["full-summer", "sessions", "flexible"], description: "flexible = partial-summer splits offered (e.g. 3+3)" },
-    tripsPerSession: { type: "integer", description: "out-of-camp trips per session" },
-    traditions: { type: "array", items: { type: "string" }, description: "signature all-camp events, e.g. 'Color War', 'College Days'" },
-    ownership: { enum: ["family", "nonprofit", "agency"], description: "family = privately owned; agency = federation / Y / scout-sponsored" },
-    lastRenovated: { type: "integer", description: "most recent major facilities renovation year" },
-    busService: { type: "boolean" },
-    busCities: { type: "array", items: { type: "string" }, description: "metro areas buses depart from" },
-    trunkPickup: { type: "boolean" },
-    trunkPickupAreas: { type: "array", items: { type: "string" } },
-    rookieDay: {
-      type: "object",
-      additionalProperties: false,
-      required: ["offered"],
-      properties: {
-        offered: { type: "boolean" },
-        details: { type: "string", description: "when it runs / how to sign up, incl. dates found on the site" },
-        url: { type: "string", description: "the camp's rookie-day / visit page URL" },
-      },
-    },
+    culture: { type: "integer", description: "1 down-to-earth & low-key … 5 polished/upscale/scene-y; only when the site's tone/pricing make it clear, else -1" },
+    activities: { type: "array", items: { type: "string" }, description: "specific offerings as listed, lowercase — 'waterski', 'ice hockey', 'go-karts'; not general categories; [] if not stated" },
+    lakeOnSite: { ...TRI_BOOL, description: "private lake on the property (a pool is not a lake)" },
+    acInBunks: { ...TRI_BOOL, description: "camper bunks/cabins are air-conditioned" },
+    bunkSize: { type: "integer", description: "campers per bunk/cabin; -1 if not stated" },
+    laundryService: { ...TRI_BOOL, description: "camp does campers' laundry" },
+    uniformRequired: { ...TRI_BOOL, description: "required uniform/clothing families must buy" },
+    doctorOnSite: { ...TRI_BOOL, description: "physician on site, not just nurses" },
+    visitingDaysPerSession: { type: "integer", description: "-1 if not stated" },
+    phoneCallsPerSession: { type: "integer", description: "scheduled camper phone calls home per session; -1 if not stated" },
+    sessionModel: { enum: ["full-summer", "sessions", "flexible", "unknown"], description: "flexible = partial-summer splits offered (e.g. 3+3)" },
+    tripsPerSession: { type: "integer", description: "out-of-camp trips per session; -1 if not stated" },
+    traditions: { type: "array", items: { type: "string" }, description: "signature all-camp events, e.g. 'Color War', 'College Days'; [] if not stated" },
+    ownership: { enum: ["family", "nonprofit", "agency", "unknown"], description: "family = privately owned; agency = federation / Y / scout-sponsored" },
+    lastRenovated: { type: "integer", description: "most recent major facilities renovation year; -1 if not stated" },
+    busService: TRI_BOOL,
+    busCities: { type: "array", items: { type: "string" }, description: "metro areas buses depart from; [] if not stated" },
+    trunkPickup: TRI_BOOL,
+    trunkPickupAreas: { type: "array", items: { type: "string" }, description: "[] if not stated" },
+    rookieDayOffered: { ...TRI_BOOL, description: "pages mention a rookie day / new-camper day / open house / summer tours" },
+    rookieDayDetails: { type: "string", description: "when it runs / how to sign up, incl. dates found on the site; \"\" if none" },
+    rookieDayUrl: { type: "string", description: "the camp's rookie-day / visit page URL; \"\" if none" },
   },
 } as const;
+
+/**
+ * Strip the "not stated" sentinels and rebuild the record in the shape
+ * cleanEnrichment() expects: absent fields for unknowns, real booleans, and
+ * a nested rookieDay object.
+ */
+function desentinel(raw: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = { slug: raw.slug };
+  const tri = (v: unknown): boolean | undefined =>
+    v === "true" ? true : v === "false" ? false : undefined;
+
+  for (const key of [
+    "lakeOnSite", "acInBunks", "laundryService", "uniformRequired",
+    "doctorOnSite", "busService", "trunkPickup",
+  ]) {
+    const v = tri(raw[key]);
+    if (v !== undefined) out[key] = v;
+  }
+  for (const key of [
+    "culture", "bunkSize", "visitingDaysPerSession", "phoneCallsPerSession",
+    "tripsPerSession", "lastRenovated",
+  ]) {
+    const v = raw[key];
+    if (typeof v === "number" && v >= 0) out[key] = v;
+  }
+  for (const key of ["sessionModel", "ownership"]) {
+    const v = raw[key];
+    if (typeof v === "string" && v !== "unknown") out[key] = v;
+  }
+  for (const key of ["activities", "traditions", "busCities", "trunkPickupAreas"]) {
+    const v = raw[key];
+    if (Array.isArray(v) && v.length > 0) out[key] = v;
+  }
+  const offered = tri(raw.rookieDayOffered);
+  if (offered !== undefined) {
+    const rookie: Record<string, unknown> = { offered };
+    if (typeof raw.rookieDayDetails === "string" && raw.rookieDayDetails.trim())
+      rookie.details = raw.rookieDayDetails.trim();
+    if (typeof raw.rookieDayUrl === "string" && raw.rookieDayUrl.trim())
+      rookie.url = raw.rookieDayUrl.trim();
+    out.rookieDay = rookie;
+  }
+  return out;
+}
 
 const EXTRACT_SYSTEM = `You extract life-at-camp facts from a summer camp's website text for a camp-matching directory.
 
 Rules:
-- Report ONLY facts the pages state or unambiguously imply. If a field isn't addressed, OMIT it entirely — never guess, never infer from what's typical. Missing data is rendered honestly as "not compiled yet" downstream; a wrong fact about a real camp is far worse than a missing one.
-- "culture" may be inferred from tone, pricing and amenities when the signal is strong; otherwise omit it.
+- Report ONLY facts the pages state or unambiguously imply. If a field isn't addressed, use its "not stated" sentinel ("unknown", -1, "", []) — never guess, never infer from what's typical. Sentinels are rendered honestly as "not compiled yet" downstream; a wrong fact about a real camp is far worse than a missing one.
+- "culture" may be inferred from tone, pricing and amenities when the signal is strong; otherwise -1.
 - activities: specific, lowercase offerings only ("waterski", "ceramics", "go-karts") — not categories like "sports".
-- rookieDay: pages mentioning a rookie day, new-camper day, open house or summer tours count; include dates/details and the page URL when present.
+- rookieDay fields: pages mentioning a rookie day, new-camper day, open house or summer tours count; include dates/details and the page URL when present.
 - Facts only, no marketing prose.`;
 
 async function runExtract(args: string[]) {
@@ -278,7 +329,7 @@ async function runExtract(args: string[]) {
         continue;
       }
       const text = response.content.find((b) => b.type === "text")?.text ?? "";
-      const record = JSON.parse(text) as Record<string, unknown>;
+      const record = desentinel(JSON.parse(text) as Record<string, unknown>);
       record.slug = bundle.slug; // never trust the echo
       await writeFile(join(outDir, `${slug}.json`), JSON.stringify(record, null, 1));
       const fieldCount = Object.keys(record).length - 1;
