@@ -198,7 +198,7 @@ const COMPILE_SCHEMA = {
     interests: {
       type: "array",
       items: { enum: ["team-sports", "individual-sports", "waterfront", "arts-theater", "music", "stem", "outdoor-adventure", "horseback", "gymnastics-dance", "nature-animals", "action-sports"] },
-      description: "genuine program strengths only, max 6; [] if unclear",
+      description: "program strengths inferred from the activities/programs described, max 6; a general traditional camp is usually at least outdoor-adventure; [] only if the profile says nothing about programs",
     },
     religious: { enum: ["none", "jewish-cultural", "jewish-observant", "christian", "unknown"] },
     supports: {
@@ -221,7 +221,8 @@ Rules:
 - Report ONLY what the profile states or unambiguously implies. Use each field's "not stated" sentinel ("unknown", -1, "", []) when the profile doesn't address it — never guess.
 - "description" is the exception: always write an original, neutral 1-2 sentence summary in your own words (never copy profile prose).
 - website: pick from the provided candidate URLs only if it clearly belongs to this camp (not ACA, not another org); otherwise "".
-- type: "sleepaway" if any overnight/resident program exists; "day" only if day-only.
+- type: "sleepaway" if any overnight/resident program exists; "day" only if day-only. ACA profiles almost always categorize the camp (look for "Day", "Overnight", "Resident", session descriptions) — "unknown" should be rare.
+- interests: infer from the programs/activities described (these are good-faith categorizations, not guesses about facts). Most traditional camps map to at least one category.
 - Facts only, no marketing language.`;
 
 function compileDesentinel(raw: Record<string, unknown>): Record<string, unknown> {
