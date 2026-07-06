@@ -52,7 +52,7 @@ async function fetchText(url: string, timeoutMs = 20000): Promise<string | null>
 /* ── ACA Find-a-Camp ─────────────────────────────────────────────────── */
 
 const ACA_JUNK_HOSTS =
-  /acacamps|campparents|acabookstore|facebook|twitter|linkedin|youtube|instagram|pinterest|sharethis|google|gstatic|schema\.org|w3\.org/i;
+  /acacamps|campparents|acabookstore|facebook|twitter|linkedin|youtube|instagram|pinterest|sharethis|addthis|google|gstatic|schema\.org|w3\.org|maxcdn|cdnjs|jsdelivr|cloudflare|jquery|bootstrapcdn|fontawesome|fonts\.|polyfill|unpkg|gtag|doubleclick|mapbox|openstreetmap|apple\.com|adobe\.com/i;
 
 async function runAca(args: string[]) {
   const outDir = args.find((a) => !a.startsWith("--")) ?? "out/discover/aca";
@@ -84,7 +84,7 @@ async function runAca(args: string[]) {
           .map((m) => m[0])
           .filter((u) => !ACA_JUNK_HOSTS.test(u)),
       ),
-    ];
+    ].slice(0, 5);
     await writeFile(
       join(outDir, file),
       JSON.stringify(
@@ -94,6 +94,7 @@ async function runAca(args: string[]) {
           url: `https://find.acacamps.org/camp_profile.php?camp_id=${id}`,
           name,
           website: websites[0],
+          websiteCandidates: websites,
           fetchedAt: new Date().toISOString(),
           text: stripHtml(html).slice(0, 18000),
         },
