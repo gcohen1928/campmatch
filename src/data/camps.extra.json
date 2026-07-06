@@ -371,6 +371,76 @@
   "verified": false
  },
  {
+  "slug": "adventure-camp-at-the-rye-ymca",
+  "name": "Adventure Camp at the Rye YMCA",
+  "type": "day",
+  "city": "Rye",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 41.13,
+  "lng": -75.18,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A coed day camp operated by the Rye YMCA in Rye, New York, affiliated with the YMCA.",
+  "website": "https://ryeymca.org/camps/rye-y-camp",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "adventure-camps",
+  "name": "Adventure Camps",
+  "type": "sleepaway",
+  "city": "Lewisberry",
+  "state": "PA",
+  "region": "northeast",
+  "lat": 40.72,
+  "lng": -76.48,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Adventure Camps, operated by Roundtop Mountain Resort in Lewisberry, PA, offers both day and overnight camp programs, though specific ages, costs, and activities are not detailed.",
+  "website": "http://roundtopmountainresort.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "after-school-club",
   "name": "After School Club",
   "type": "day",
@@ -5810,6 +5880,40 @@
   "verified": false
  },
  {
+  "slug": "camp-adahi",
+  "name": "Camp Adahi",
+  "type": "sleepaway",
+  "city": "Cloudland",
+  "state": "GA",
+  "region": "south",
+  "lat": 33.35,
+  "lng": -83.64,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Adahi is an overnight camp operated by Girl Scouts - The Southern Appalachians located in Cloudland, Georgia.",
+  "website": "https://www.girlscoutcsa.org/en/members/for-girl-scouts/camp-and-outdoors/camp-adahi.html",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-agape-nc",
   "name": "Agape Kure Beach Ministries",
   "type": "sleepaway",
@@ -6407,6 +6511,41 @@
   "lakeOnSite": true,
   "lastRenovated": 1999,
   "ownership": "agency"
+ },
+ {
+  "slug": "camp-akita-il",
+  "name": "Camp Akita",
+  "type": "sleepaway",
+  "city": "Gilson",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 41.83,
+  "lng": -90.3,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 2004,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Akita is an overnight camp in Gilson, Illinois, operated by the Illinois Conference of Seventh-day Adventists and founded in 2004.",
+  "website": "http://www.campakita.com",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-al-gon-quian",
@@ -9985,6 +10124,42 @@
   "website": "",
   "rating": 4.6,
   "reviewCount": 16,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-birkett",
+  "name": "Camp Birkett",
+  "type": "day",
+  "city": "Dexter",
+  "state": "MI",
+  "region": "midwest",
+  "lat": 42.28,
+  "lng": -85.74,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Birkett is a day camp in Dexter, Michigan, operated by the Ann Arbor YMCA.",
+  "website": "https://www.annarborymca.org/camps-and-childcare/camps/birkett-day-camp/",
   "claimed": false,
   "verified": false
  },
@@ -15009,6 +15184,40 @@
   "verified": false
  },
  {
+  "slug": "camp-crescent",
+  "name": "Camp Crescent",
+  "type": "sleepaway",
+  "city": "Potosi",
+  "state": "MO",
+  "region": "midwest",
+  "lat": 38.52,
+  "lng": -93.28,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Crescent is an overnight camp in Potosi, Missouri, operated by St. Louis Children's Hospital.",
+  "website": "http://www.stlouischildrens.org/content/medservices/campcrescent.htm",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-crescent-cove",
   "name": "Camp Crescent Cove",
   "type": "sleepaway",
@@ -18382,6 +18591,43 @@
   "website": "",
   "rating": 4.5,
   "reviewCount": 10,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-fire-heartland-day-camp",
+  "name": "Camp Fire Heartland Day Camp",
+  "type": "day",
+  "city": "Kansas City",
+  "state": "KS",
+  "region": "midwest",
+  "lat": 39.32,
+  "lng": -97.86,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1910,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Fire Heartland Day Camp is a coed day camp located in Kansas City, KS, operated by Camp Fire Heartland and offering transportation for campers.",
+  "website": "http://campfireheartland.org",
   "claimed": false,
   "verified": false
  },
@@ -23115,6 +23361,43 @@
   "verified": false
  },
  {
+  "slug": "camp-hilbert-jewish-comm-ctr-day-camps",
+  "name": "Camp Hilbert - Jewish Comm Ctr Day Camps",
+  "type": "day",
+  "city": "Goochland",
+  "state": "VA",
+  "region": "mid-atlantic",
+  "lat": 37.5,
+  "lng": -78.96,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1947,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "jewish-cultural",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Hilbert is a traditional Jewish Community Center day camp located on 110 acres in Goochland, Virginia, operated by the Weinstein JCC.",
+  "website": "http://www.weinsteinjcc.org/summer-camps/camp-hilbert/",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-hillard",
   "name": "Camp Hillard",
   "type": "day",
@@ -24012,6 +24295,40 @@
   "claimed": false,
   "verified": false,
   "culture": 2
+ },
+ {
+  "slug": "camp-honi-hanta",
+  "name": "Camp Honi Hanta",
+  "type": "sleepaway",
+  "city": "Bradenton",
+  "state": "FL",
+  "region": "south",
+  "lat": 28.42,
+  "lng": -82.68,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Honi Hanta is an overnight camp operated by Girl Scouts of Gulfcoast Florida in Bradenton, FL, affiliated with Girl Scouts of the USA.",
+  "website": "http://www.gsgcf.org",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-hoover-va",
@@ -27231,6 +27548,45 @@
   ]
  },
  {
+  "slug": "camp-kindle",
+  "name": "Camp Kindle",
+  "type": "sleepaway",
+  "city": "Lincoln",
+  "state": "NE",
+  "region": "midwest",
+  "lat": 41.12,
+  "lng": -99.1,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1998,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [
+   "food-allergies",
+   "anxiety-support",
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Kindle is a nonprofit overnight camp serving children and young people infected with or affected by HIV/AIDS, offering camping events in Nebraska and California along with year-round support programs.",
+  "website": "http://www.campkindle.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-kingfisher-ga",
   "name": "Camp Kingfisher",
   "type": "day",
@@ -27451,6 +27807,43 @@
    "details": "In-person tours of camp are offered each year; director leads tours discussing philosophy and facilities; limited spots, register early via the Tours page.",
    "url": "https://www.campkinneret.com/future-families/tours-visits/"
   }
+ },
+ {
+  "slug": "camp-kinneret-day-camp",
+  "name": "Camp Kinneret Day Camp",
+  "type": "day",
+  "city": "Agoura",
+  "state": "CA",
+  "region": "west",
+  "lat": 34.82,
+  "lng": -119.48,
+  "ageMin": 4,
+  "ageMax": 14,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1954,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A coed day camp in Agoura, California serving children ages 4-14 with an adventure-focused program emphasizing small groups and camper-first values.",
+  "website": "http://www.campkinneret.com",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-kippewa",
@@ -29039,6 +29432,40 @@
    "Final Bombardy",
    "Riverview & Skyline Dances"
   ]
+ },
+ {
+  "slug": "camp-lanowa",
+  "name": "Camp Lanowa",
+  "type": "sleepaway",
+  "city": "Central Valley",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 40.87,
+  "lng": -75.98,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Lanowa is an overnight camp in Central Valley, New York, operated by HFH Summer Camps and currently not ACA-accredited.",
+  "website": "http://www.hfhcamps.org",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-lantern-creek",
@@ -32130,6 +32557,41 @@
   "ownership": "nonprofit"
  },
  {
+  "slug": "camp-mariastella",
+  "name": "Camp Mariastella",
+  "type": "sleepaway",
+  "city": "Encino",
+  "state": "CA",
+  "region": "west",
+  "lat": 35.12,
+  "lng": -121.88,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1941,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Mariastella is a rustic, nature-focused overnight camp for girls in Encino, California, founded in 1941 with a mission rooted in spiritual and personal growth.",
+  "website": "http://www.campmariastella.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-marimeta",
   "name": "Camp Marimeta",
   "type": "sleepaway",
@@ -32499,6 +32961,41 @@
   "website": "",
   "rating": 4.5,
   "reviewCount": 12,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-marston-ymca",
+  "name": "Camp Marston YMCA",
+  "type": "sleepaway",
+  "city": "Julian",
+  "state": "CA",
+  "region": "west",
+  "lat": 35.48,
+  "lng": -119.92,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1921,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Marston YMCA is a coed overnight camp in Julian, California, operated by the YMCA of San Diego County since 1921.",
+  "website": "https://www.ymcasd.org/camps/camp-marston/summer-camp-marston",
   "claimed": false,
   "verified": false
  },
@@ -35630,6 +36127,40 @@
    "Orange County",
    "Redlands"
   ]
+ },
+ {
+  "slug": "camp-mountain-house",
+  "name": "Camp Mountain House",
+  "type": "sleepaway",
+  "city": "Allentown",
+  "state": "PA",
+  "region": "northeast",
+  "lat": 41.17,
+  "lng": -77.62,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Mountain House is a Girl Scouts-operated camp in Allentown, Pennsylvania, offering both day and overnight programs.",
+  "website": "http://www.gsep.org/index.php",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-moval",
@@ -39903,6 +40434,40 @@
   ]
  },
  {
+  "slug": "camp-pennyroyal",
+  "name": "Camp Pennyroyal",
+  "type": "sleepaway",
+  "city": "Utica",
+  "state": "KY",
+  "region": "south",
+  "lat": 37.88,
+  "lng": -86.62,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Pennyroyal is an overnight camp for girls operated by Girl Scouts - Kentuckiana in Utica, Kentucky.",
+  "website": "http://www.gskentuckiana.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-perkins-idaho",
   "name": "Camp Perkins",
   "type": "sleepaway",
@@ -42200,6 +42765,42 @@
   "verified": false
  },
  {
+  "slug": "camp-red-leaf",
+  "name": "Camp Red Leaf",
+  "type": "sleepaway",
+  "city": "Ingleside",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 41,
+  "lng": -88.52,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "jewish-cultural",
+  "supports": [
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Red Leaf offers day camps, overnight camps, and respite care weekends for youth and adults with developmental disabilities or special emotional and behavioral needs, operated with a Reform Jewish affiliation.",
+  "website": "https://www.campredleaf.org/",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-redcloud",
   "name": "Camp Redcloud",
   "type": "sleepaway",
@@ -42323,6 +42924,40 @@
   "website": "https://www.campregis-applejack.com",
   "rating": 4.6,
   "reviewCount": 16,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-ren",
+  "name": "Camp Ren",
+  "type": "sleepaway",
+  "city": "Pittsburgh",
+  "state": "PA",
+  "region": "northeast",
+  "lat": 40.62,
+  "lng": -78.88,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Ren is an overnight camp located in Pittsburgh, PA, operated by Shady Side Academy; it is not currently ACA-accredited.",
+  "website": "http://www.shadysideacademy.org",
   "claimed": false,
   "verified": false
  },
@@ -44578,6 +45213,42 @@
   }
  },
  {
+  "slug": "camp-scene",
+  "name": "Camp Scene",
+  "type": "day",
+  "city": "Decatur",
+  "state": "GA",
+  "region": "south",
+  "lat": 33.57,
+  "lng": -84.26,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Scene is an independent, for-profit day camp based in Decatur, Georgia, run by Camp Scene Environmental Adventures.",
+  "website": "http://www.campscene.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-scherman",
   "name": "Camp Scherman",
   "type": "sleepaway",
@@ -46409,6 +47080,41 @@
   }
  },
  {
+  "slug": "camp-sierra",
+  "name": "Camp Sierra",
+  "type": "sleepaway",
+  "city": "Big Creek",
+  "state": "CA",
+  "region": "west",
+  "lat": 35.83,
+  "lng": -120.82,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Sierra is a coed overnight camp located at Huntington Lake in Big Creek, California, operated by The Ohio State University's Recreational Sports department.",
+  "website": "https://campsierra.org/camp/",
+  "lakeOnSite": true,
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-sierra-vista",
   "name": "Camp Sierra Vista for Girls",
   "type": "sleepaway",
@@ -47026,6 +47732,43 @@
    "wilderness expeditions",
    "adventure programs"
   ],
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-sonshine-ne",
+  "name": "Camp Sonshine",
+  "type": "day",
+  "city": "Roca",
+  "state": "NE",
+  "region": "midwest",
+  "lat": 41.62,
+  "lng": -98.18,
+  "ageMin": 5,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 2007,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Sonshine is a Christian summer day camp in Roca, Nebraska, serving K-6th graders with a Leadership Training program for 7th-9th grade teens, focused on building relationships through varied activities.",
+  "website": "http://www.CampSonshineMemories.org",
   "claimed": false,
   "verified": false
  },
@@ -48475,6 +49218,42 @@
   "verified": false
  },
  {
+  "slug": "camp-sunrise-inc",
+  "name": "Camp Sunrise Inc.",
+  "type": "sleepaway",
+  "city": "Crownsville",
+  "state": "MD",
+  "region": "mid-atlantic",
+  "lat": 39.6,
+  "lng": -77.74,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1987,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Sunrise is a week-long overnight camp for children who have been diagnosed with or survived cancer, sponsored by Johns Hopkins Sidney Kimmel Comprehensive Cancer Center. It focuses on peer support, independence, and confidence-building through camp activities.",
+  "website": "https://www.campsunrisemd.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-sunshine-maine",
   "name": "Camp Sunshine",
   "type": "sleepaway",
@@ -49145,6 +49924,42 @@
   "website": "",
   "rating": 4.5,
   "reviewCount": 9,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-takodah",
+  "name": "Camp Takodah",
+  "type": "sleepaway",
+  "city": "Richmond",
+  "state": "NH",
+  "region": "northeast",
+  "lat": 43.03,
+  "lng": -71.62,
+  "ageMin": 8,
+  "ageMax": 15,
+  "gender": "brother-sister",
+  "sessionWeeks": [
+   1
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1916,
+  "interests": [
+   "outdoor-adventure",
+   "waterfront",
+   "team-sports"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Takodah is a YMCA-operated overnight camp in Richmond, New Hampshire offering separate single-gender boys' and girls' programs for youth ages 8-15, focused on building confidence and character.",
+  "website": "http://www.camptakodah.org",
   "claimed": false,
   "verified": false
  },
@@ -51778,6 +52593,43 @@
   "verified": false
  },
  {
+  "slug": "camp-tuolumne-trails",
+  "name": "Camp Tuolumne Trails",
+  "type": "sleepaway",
+  "city": "Groveland",
+  "state": "CA",
+  "region": "west",
+  "lat": 35.62,
+  "lng": -121.76,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 2008,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Tuolumne Trails is a coed overnight camp in Groveland, California, offering a residential summer program designed for campers with special needs.",
+  "website": "http://www.tuolumnetrails.org/",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-turk",
   "name": "Camp Turk",
   "type": "sleepaway",
@@ -52326,6 +53178,42 @@
   "verified": false
  },
  {
+  "slug": "camp-valley-forge",
+  "name": "Camp Valley Forge",
+  "type": "day",
+  "city": "Valley Forge",
+  "state": "PA",
+  "region": "northeast",
+  "lat": 40.85,
+  "lng": -78.72,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Valley Forge is a day camp in Valley Forge, PA operated by Girl Scouts - Eastern Pennsylvania, affiliated with Girl Scouts of the USA.",
+  "website": "http://www.gsep.org/index.php",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-victory-pa",
   "name": "Camp Victory",
   "type": "sleepaway",
@@ -52620,6 +53508,41 @@
   }
  },
  {
+  "slug": "camp-wa-wa-segowea",
+  "name": "Camp Wa Wa Segowea",
+  "type": "sleepaway",
+  "city": "Southfield",
+  "state": "MA",
+  "region": "northeast",
+  "lat": 43.08,
+  "lng": -71.98,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1913,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A coed YMCA-affiliated camp in Southfield, Massachusetts offering both day and overnight programs focused on personal growth, responsibility, and community.",
+  "website": "http://smithpark.org/campwawa",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-wabak",
   "name": "Camp WaBak",
   "type": "sleepaway",
@@ -52830,6 +53753,40 @@
   "website": "",
   "rating": 4.5,
   "reviewCount": 12,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "camp-wakonda",
+  "name": "Camp Wakonda",
+  "type": "sleepaway",
+  "city": "Central Valley",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 41.68,
+  "lng": -76.4,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Wakonda is an overnight camp located in Central Valley, New York, operated by HFH Summer Camps.",
+  "website": "http://www.hfhnyc.org",
   "claimed": false,
   "verified": false
  },
@@ -56246,6 +57203,43 @@
   "verified": false
  },
  {
+  "slug": "camp-wydaca",
+  "name": "Camp Wydaca",
+  "type": "day",
+  "city": "Wyckoff",
+  "state": "NJ",
+  "region": "mid-atlantic",
+  "lat": 40.15,
+  "lng": -76.98,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1944,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp Wydaca is a coed day camp operated by the Wyckoff Family YMCA in Wyckoff, New Jersey, offering both traditional and specialty camp programs.",
+  "website": "http://www.wyckoffymca.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "camp-wyldewood",
   "name": "Camp Wyldewood",
   "type": "sleepaway",
@@ -56506,6 +57500,41 @@
    "Kingston, RI",
    "T.F. Green Airport"
   ]
+ },
+ {
+  "slug": "camp-yolijwa-doubling-gap-center",
+  "name": "Camp YoliJwa, Doubling Gap Center",
+  "type": "sleepaway",
+  "city": "Newville",
+  "state": "PA",
+  "region": "northeast",
+  "lat": 40.88,
+  "lng": -76.78,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1934,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Camp YoliJwa is a Christian camping ministry of the Eastern Regional Conference Churches of God, offering coed overnight resident camps and weekend retreats in Newville, Pennsylvania.",
+  "website": "",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "camp-yomechas-ymca",
@@ -58196,6 +59225,85 @@
   "rookieDay": {
    "offered": false
   }
+ },
+ {
+  "slug": "catch-a-rainbow",
+  "name": "Catch A Rainbow",
+  "type": "sleepaway",
+  "city": "Jackson",
+  "state": "MI",
+  "region": "midwest",
+  "lat": 43,
+  "lng": -83.02,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1986,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [
+   "food-allergies",
+   "adhd-learning",
+   "anxiety-support",
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "An overnight camp founded in 1986 by the American Cancer Society for children who have or have had cancer, offering traditional camp activities alongside on-site medical support from volunteer health care professionals.",
+  "website": "",
+  "activities": [
+   "games",
+   "sports",
+   "songs"
+  ],
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "cathedral-domain",
+  "name": "Cathedral Domain",
+  "type": "sleepaway",
+  "city": "Irvine",
+  "state": "KY",
+  "region": "south",
+  "lat": 38.58,
+  "lng": -85.3,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Cathedral Domain is a traditional overnight camp operated by the Episcopal Diocese of Lexington, offering a Christ-centered camping experience.",
+  "website": "http://www.cathedraldomain.org",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "cathedral-domain-ky",
@@ -59933,6 +61041,42 @@
    "details": "Barton Open House on May 16, 2026 from 1 p.m. to 4 p.m. at Clara Barton Camp in North Oxford (also Camp Joslin in Charlton). Free event; tour facilities, meet year-round and summer staff and medical team; registration required.",
    "url": "https://www.bartoncenter.org/programs/family-programs/"
   }
+ },
+ {
+  "slug": "clearpool-summer-program",
+  "name": "Clearpool Summer Program",
+  "type": "day",
+  "city": "Carmel",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 40.3,
+  "lng": -76.12,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Clearpool Summer Program is a day camp in Carmel, NY, operated by Green Chimneys as an independent, not-for-profit organization.",
+  "website": "https://www.greenchimneys.org/community-programs-services/summer-camps/",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "clearwater-camp-for-girls",
@@ -63631,6 +64775,42 @@
   "verified": false
  },
  {
+  "slug": "east-orange-ymca-summer-camps",
+  "name": "East Orange YMCA Summer Camps",
+  "type": "day",
+  "city": "East Orange",
+  "state": "NJ",
+  "region": "mid-atlantic",
+  "lat": 41,
+  "lng": -75.96,
+  "ageMin": 5,
+  "ageMax": 13,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "East Orange YMCA offers a day camp for children ages 5-13 with a full range of educational and recreational activities, operated by the Metro YMCA of the Oranges.",
+  "website": "http://www.eastorangeymca.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "eastern-4h-center",
   "name": "Eastern 4-H Environmental Education Center",
   "type": "sleepaway",
@@ -64211,6 +65391,42 @@
   "busCities": [
    "St. Paul, MN"
   ]
+ },
+ {
+  "slug": "elaine-frank-apachi-day-camp",
+  "name": "Elaine Frank Apachi Day Camp",
+  "type": "day",
+  "city": "Lake Zurich",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 42.35,
+  "lng": -89.82,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "jewish-cultural",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A day camp in Lake Zurich, Illinois operated by the JCC of Chicago with a Jewish community affiliation.",
+  "website": "https://daycamp.jccchicago.org/our-camps/elaine-frank-apachi/",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "elks-camp-barrett",
@@ -65603,6 +66819,40 @@
   ]
  },
  {
+  "slug": "fiver-childrens-foundation",
+  "name": "Fiver Children's Foundation",
+  "type": "sleepaway",
+  "city": "Earlville",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 40.28,
+  "lng": -75.3,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Fiver Children's Foundation runs an overnight camp in Earlville, NY as part of a ten-year mentoring commitment serving youth from under-resourced New York communities.",
+  "website": "http://www.fiver.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "flat-rock-river-ymca-camp",
   "name": "Flat Rock River YMCA Camp",
   "type": "sleepaway",
@@ -66559,6 +67809,42 @@
    "details": "Camp offers tours for families who will be on Orcas Island; visitors can fill out a form to request a tour and staff will follow up.",
    "url": "https://fourwindscamp.org/next-steps/request-tour/"
   }
+ },
+ {
+  "slug": "frederick-county-4-h-camp-center",
+  "name": "Frederick County 4-H Camp Center",
+  "type": "day",
+  "city": "Frederick",
+  "state": "MD",
+  "region": "mid-atlantic",
+  "lat": 38.83,
+  "lng": -76.22,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A 4-H day camp in Frederick, Maryland offering youth educational and recreational activities led by University of Maryland faculty, 4-H volunteers, and trained camp counselors.",
+  "website": "https://campcenter.frederickcounty4-h.org/",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "french-woods-preforming-arts",
@@ -67555,6 +68841,78 @@
   "verified": false
  },
  {
+  "slug": "girl-scout-day-camp",
+  "name": "Girl Scout Day Camp",
+  "type": "day",
+  "city": "Saint Louis",
+  "state": "MO",
+  "region": "midwest",
+  "lat": 38.47,
+  "lng": -93.64,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A day camp located in Saint Louis, Missouri, offering a traditional day camp program; the camp is not currently ACA-accredited.",
+  "website": "",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "girl-scout-day-camps-san-diego",
+  "name": "Girl Scout Day Camps San Diego",
+  "type": "day",
+  "city": "San Diego",
+  "state": "CA",
+  "region": "west",
+  "lat": 36.32,
+  "lng": -120.74,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "girls",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A day camp program run by Girl Scouts San Diego, offering girls-only camps at multiple locations around San Diego County with a home base in Balboa Park.",
+  "website": "http://www.sdgirlscouts.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "girls-rock-math",
   "name": "Girls Rock Math",
   "type": "day",
@@ -68273,6 +69631,40 @@
    "details": "GRP Family Camp Weekend (May 15-17, 2026) lets prospective families and first-time campers try camp before committing to a summer session; registration opens January 2026. There is also a dedicated 5-day 'Rookie Camp' session (Session 1) reserved exclusively for first-time campers.",
    "url": "https://www.greenriverpreserve.org/events/rookie-weekend"
   }
+ },
+ {
+  "slug": "greenbush-camp-and-retreat-center",
+  "name": "Greenbush Camp and Retreat Center",
+  "type": "sleepaway",
+  "city": "Girard",
+  "state": "KS",
+  "region": "midwest",
+  "lat": 38.75,
+  "lng": -95.08,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Greenbush Camp and Retreat Center is a Kansas-based camp offering both day and overnight programs, operated by the Southeast Kansas Education Service Center.",
+  "website": "http://www.greenbush.org",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "greene-family-camp",
@@ -69481,6 +70873,42 @@
    "horse bowl",
    "fashion revue"
   ],
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "harlem-ymca",
+  "name": "Harlem YMCA",
+  "type": "day",
+  "city": "New York",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 41.33,
+  "lng": -76.62,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Harlem YMCA offers a coed day camp in New York City with general activities and games, operated by the YMCA of Greater New York.",
+  "website": "http://www.ymcanyc.org/sub.php?p=about&sp=harlem/harlemabout",
   "claimed": false,
   "verified": false
  },
@@ -71362,6 +72790,43 @@
   "verified": false
  },
  {
+  "slug": "hsi-lai-school-camp",
+  "name": "Hsi Lai School Camp",
+  "type": "day",
+  "city": "Hacienda Heights",
+  "state": "CA",
+  "region": "west",
+  "lat": 34.9,
+  "lng": -122.04,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1989,
+  "interests": [
+   "arts-theater"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A non-profit day camp affiliated with Buddha's Light Hsi Lai School, focused on promoting Chinese culture, education, and talent development for children in Hacienda Heights, CA.",
+  "website": "http://www.hsilai.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "hume-lake-ca",
   "name": "Hume Lake Christian Camps",
   "type": "sleepaway",
@@ -72777,6 +74242,41 @@
   "website": "",
   "rating": 4.4,
   "reviewCount": 25,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "j-camp-at-oshman-family-jcc",
+  "name": "J-Camp at Oshman Family JCC",
+  "type": "sleepaway",
+  "city": "Palo Alto",
+  "state": "CA",
+  "region": "west",
+  "lat": 36.32,
+  "lng": -122.02,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1963,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "jewish-cultural",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "J-Camp at Oshman Family JCC is a Jewish Community Center camp in Palo Alto, CA offering both day and overnight programs designed to build confidence and friendships for children of all backgrounds.",
+  "website": "http://www.paloaltojcc.org/camps",
   "claimed": false,
   "verified": false
  },
@@ -76894,6 +78394,43 @@
   "ownership": "agency"
  },
  {
+  "slug": "letting-kids-succeed",
+  "name": "Letting Kids Succeed",
+  "type": "day",
+  "city": "Columbus",
+  "state": "OH",
+  "region": "midwest",
+  "lat": 39.93,
+  "lng": -85.2,
+  "ageMin": 5,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 2004,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Letting Kids Succeed is a Christian-centered day camp in Columbus, Ohio, offering children ages 5-15 spiritual, academic, emotional and social growth through extracurricular activities.",
+  "website": "http://www.lettingkidssucceed.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "ligonier-camp",
   "name": "Ligonier Camp & Conference Center",
   "type": "sleepaway",
@@ -77882,6 +79419,42 @@
   "website": "",
   "rating": 4.7,
   "reviewCount": 24,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "lost-lake-camp",
+  "name": "Lost Lake Camp",
+  "type": "sleepaway",
+  "city": "Fairbanks",
+  "state": "AK",
+  "region": "west",
+  "lat": 60.47,
+  "lng": -149.44,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1950,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Lost Lake Camp is an overnight camp in Fairbanks, Alaska, operated by the Midnight Sun Council of the Boy Scouts of America.",
+  "website": "http://midnightsunbsa.org",
+  "lakeOnSite": true,
   "claimed": false,
   "verified": false
  },
@@ -80339,6 +81912,40 @@
   "ownership": "nonprofit"
  },
  {
+  "slug": "montana-youth-retreat-ada",
+  "name": "Montana Youth Retreat - ADA",
+  "type": "sleepaway",
+  "city": "Gold Creek",
+  "state": "MT",
+  "region": "west",
+  "lat": 46.58,
+  "lng": -111.34,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "An overnight camp in Gold Creek, Montana, operated by Channel Islands YMCA; the profile provides minimal program or demographic details.",
+  "website": "http://www.ciymca.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "montlure-camp",
   "name": "Montlure Camp",
   "type": "sleepaway",
@@ -82055,6 +83662,42 @@
   "verified": false
  },
  {
+  "slug": "new-country-day-camp-ny",
+  "name": "New Country Day Camp",
+  "type": "day",
+  "city": "Staten Island",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 40.37,
+  "lng": -76.78,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "jewish-cultural",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "New Country Day Camp is a coed day camp in Staten Island, NY, operated by the 14th Street Y, a Jewish community center that also offers fitness and arts programming.",
+  "website": "http://www.newcountrydaycamp.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "new-england-frontier-camp",
   "name": "New England Frontier Camp",
   "type": "sleepaway",
@@ -82989,6 +84632,40 @@
   "verified": false
  },
  {
+  "slug": "nosoca-pines-ranch",
+  "name": "Nosoca Pines Ranch",
+  "type": "sleepaway",
+  "city": "Liberty Hill",
+  "state": "SC",
+  "region": "south",
+  "lat": 33.23,
+  "lng": -83.28,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Nosoca Pines Ranch is an ACA-accredited coed overnight summer camp located in Liberty Hill, South Carolina, operated by the Seventh-day Adventist church.",
+  "website": "http://www.nosoca.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "occohannock-on-the-bay",
   "name": "Occohannock on the Bay",
   "type": "sleepaway",
@@ -83154,6 +84831,40 @@
   "acaAccredited": true,
   "description": "Ohio Military Kids offers low-cost camping programs across the state for children of military service members, combining traditional camp activities with support for coping with deployment and military life.",
   "website": "https://ohio4h.org/statewide-programs/ohio-military-kids",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "olmsted",
+  "name": "Olmsted",
+  "type": "sleepaway",
+  "city": "Cornwall On Hudson",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 41.13,
+  "lng": -76.04,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A small camp located at the foot of Storm King Mountain in the Hudson Valley, serving inner-city children with a spiritual emphasis, operated by Five Points Mission (UMCRM).",
+  "website": "http://www.campolmsted.org",
   "claimed": false,
   "verified": false
  },
@@ -83716,6 +85427,43 @@
   }
  },
  {
+  "slug": "park-district-of-oak-park-camps",
+  "name": "Park District of Oak Park Camps",
+  "type": "day",
+  "city": "Oak Park",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 41.32,
+  "lng": -90.64,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1912,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A municipal park district day camp program in Oak Park, IL, offering a variety of recreational summer offerings for coed participants through the Park District of Oak Park.",
+  "website": "http://www.pdop.org/",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "park-shore-country-day-camp",
   "name": "Park Shore Country Day Camp",
   "type": "day",
@@ -84023,6 +85771,40 @@
   "website": "https://www.perry-mansfield.org",
   "rating": 4.7,
   "reviewCount": 22,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "peterkin-camp-and-conference-center",
+  "name": "Peterkin Camp and Conference Center",
+  "type": "sleepaway",
+  "city": "Romney",
+  "state": "WV",
+  "region": "mid-atlantic",
+  "lat": 38.25,
+  "lng": -80.84,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Peterkin Camp and Conference Center is a Christian camp in Romney, West Virginia, operated by the Episcopal Diocese of WV, offering both day and overnight programs.",
+  "website": "https://www.wvdiocese.org/peterkin/",
   "claimed": false,
   "verified": false
  },
@@ -85162,6 +86944,43 @@
    "minecraft engineering",
    "robotics"
   ]
+ },
+ {
+  "slug": "pleasant-ridge-camp-and-retreat-center",
+  "name": "Pleasant Ridge Camp and Retreat Center",
+  "type": "sleepaway",
+  "city": "Marietta",
+  "state": "SC",
+  "region": "south",
+  "lat": 33.8,
+  "lng": -80.32,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 2010,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [
+   "inclusion-program"
+  ],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A Parks and Recreation-operated camp and retreat center in the foothills of the Blue Ridge Mountains near Greenville, SC, offering day and overnight programs along with facilities for family, corporate, and youth retreats.",
+  "website": "http://www.pleasantridgecampandretreatcenter.com",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "pocono-plateau-camp",
@@ -86340,6 +88159,42 @@
   "website": "",
   "rating": 4.4,
   "reviewCount": 14,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "rankin-ymca-l-e-a-d-discover",
+  "name": "Rankin YMCA - L.E.A.D., Discover",
+  "type": "day",
+  "city": "Edmond",
+  "state": "OK",
+  "region": "south",
+  "lat": 36,
+  "lng": -97.38,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Rankin YMCA offers a day camp program in Edmond, Oklahoma, operated by the YMCA of Greater Oklahoma City.",
+  "website": "http://www.ymcaokc.org",
   "claimed": false,
   "verified": false
  },
@@ -90239,6 +92094,48 @@
   "verified": false
  },
  {
+  "slug": "sino-language-gateway",
+  "name": "Sino Language Gateway",
+  "type": "sleepaway",
+  "city": "San Jose",
+  "state": "CA",
+  "region": "west",
+  "lat": 34.75,
+  "lng": -121.8,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 2003,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A study-abroad style summer camp offering Chinese language immersion and leadership programs in Beijing and Shanghai, combining cultural immersion, service projects, and travel for youth and teens.",
+  "website": "http://www.sinolanguage.com",
+  "activities": [
+   "chinese language study",
+   "culture immersion",
+   "community service",
+   "travel",
+   "leadership training"
+  ],
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "sitka-fine-arts-camp",
   "name": "Sitka Fine Arts Camp",
   "type": "sleepaway",
@@ -91748,6 +93645,42 @@
   ]
  },
  {
+  "slug": "sports-complex",
+  "name": "Sports Complex",
+  "type": "day",
+  "city": "Chicago",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 41.67,
+  "lng": -88.06,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "team-sports"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-affiliated day camp in Chicago offering sports-focused programming for children, operated by PALS Programs.",
+  "website": "http://www.ymcachicago.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "spring-heights-camp-wv",
   "name": "Spring Heights Camp & Retreat Center",
   "type": "sleepaway",
@@ -92172,6 +94105,41 @@
   "claimed": false,
   "verified": false,
   "ownership": "nonprofit"
+ },
+ {
+  "slug": "st-michaels-summer-camp",
+  "name": "St Michaels Summer Camp",
+  "type": "sleepaway",
+  "city": "Silverado",
+  "state": "CA",
+  "region": "west",
+  "lat": 36.03,
+  "lng": -120.94,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "boys",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 1962,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "An overnight camp for boys operated by the priests and seminarians of St. Michael's Abbey, combining outdoor recreation with instruction in the Catholic faith and participation in the sacraments.",
+  "website": "http://www.stmichaelsabbey.com/summer-camp",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "stagedoor-manor",
@@ -92644,6 +94612,40 @@
   "verified": false
  },
  {
+  "slug": "stony-lake-lutheran-camp",
+  "name": "Stony Lake Lutheran Camp",
+  "type": "sleepaway",
+  "city": "New Era",
+  "state": "MI",
+  "region": "midwest",
+  "lat": 42.48,
+  "lng": -85.34,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Stony Lake Lutheran Camp is an overnight camp in New Era, Michigan, affiliated with the ELCA Lutheran church and operated by Living Water Ministries.",
+  "website": "http://www.elcalivingwater.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "storm-mountain-center",
   "name": "Storm Mountain Center",
   "type": "sleepaway",
@@ -92721,6 +94723,40 @@
   "website": "",
   "rating": 4.6,
   "reviewCount": 11,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "strong-rock-camp-and-retreat",
+  "name": "Strong Rock Camp and Retreat",
+  "type": "sleepaway",
+  "city": "Cleveland",
+  "state": "GA",
+  "region": "south",
+  "lat": 33.55,
+  "lng": -85.18,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "founded": 2005,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "Strong Rock is a Christian overnight camp in Cleveland, Georgia, offering 6-day and 13-day coed sessions focused on building confidence and character through faith-based mentorship.",
+  "website": "http://www.strongrockcamp.com",
   "claimed": false,
   "verified": false
  },
@@ -94806,6 +96842,40 @@
   "ownership": "nonprofit"
  },
  {
+  "slug": "the-summer-camps-at-stony-brook-university",
+  "name": "The Summer Camps at Stony Brook University",
+  "type": "day",
+  "city": "Stony Brook",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 40.62,
+  "lng": -74.4,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 2000,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A traditional day camp at Stony Brook University offering themed academies with flexible three-, four-, or five-day weekly options, running from 9am to 4pm with optional before/after care.",
+  "website": "",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "the-wilds-nc",
   "name": "The Wilds Christian Camp",
   "type": "sleepaway",
@@ -95103,6 +97173,40 @@
    "pool (billiards)"
   ],
   "ownership": "nonprofit"
+ },
+ {
+  "slug": "tim-horton-camp-kentahten",
+  "name": "Tim Horton Camp Kentahten",
+  "type": "sleepaway",
+  "city": "Campbellsville",
+  "state": "KY",
+  "region": "south",
+  "lat": 38.47,
+  "lng": -86.72,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   2,
+   4
+  ],
+  "tuitionMin": 2500,
+  "tuitionMax": 4500,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A non-profit overnight camp providing quality camp experiences for economically disadvantaged children referred through community agencies.",
+  "website": "http://www.timscamps.com",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "timber-lake-west",
@@ -99231,6 +101335,42 @@
   }
  },
  {
+  "slug": "wheaton-park-dist",
+  "name": "Wheaton Park Dist",
+  "type": "day",
+  "city": "Wheaton",
+  "state": "IL",
+  "region": "midwest",
+  "lat": 41,
+  "lng": -88.4,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A day camp operated by the Wheaton Park District in Illinois, offering local recreational programming for children.",
+  "website": "http://www.wheatonparkdistrict.com",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "white-memorial-camp",
   "name": "White Memorial Camp",
   "type": "sleepaway",
@@ -99268,6 +101408,42 @@
   "website": "",
   "rating": 4.4,
   "reviewCount": 9,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "white-pines-day-camp",
+  "name": "White Pines Day Camp",
+  "type": "day",
+  "city": "Livingston",
+  "state": "NJ",
+  "region": "mid-atlantic",
+  "lat": 41.2,
+  "lng": -74.36,
+  "ageMin": 6,
+  "ageMax": 13,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "White Pines Day Camp is a day camp in Livingston, NJ operated by the Metro YMCA of the Oranges, serving children ages 6-13.",
+  "website": "http://www.metroymcas.org/wayne-ymca/white-pines-day-camp-for-ages-6-13/",
   "claimed": false,
   "verified": false
  },
@@ -101858,6 +104034,42 @@
   "ownership": "agency"
  },
  {
+  "slug": "ymca-camp-coney-pine",
+  "name": "YMCA Camp Coney Pine",
+  "type": "day",
+  "city": "Rochester",
+  "state": "NH",
+  "region": "northeast",
+  "lat": 42.47,
+  "lng": -72.72,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A day camp on 19 acres in Rochester, New Hampshire, operated by The Granite YMCA, offering coed programming with trained staff.",
+  "website": "http://www.graniteymca.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "ymca-camp-coniston",
   "name": "YMCA Camp Coniston",
   "type": "sleepaway",
@@ -103129,6 +105341,42 @@
    "Closing Campfire",
    "Weekly Theme Dinner"
   ]
+ },
+ {
+  "slug": "ymca-camp-halfmoon",
+  "name": "YMCA Camp Halfmoon",
+  "type": "day",
+  "city": "Goffstown",
+  "state": "NH",
+  "region": "northeast",
+  "lat": 43.02,
+  "lng": -73.18,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "YMCA Camp Halfmoon is a coed day camp in Goffstown, New Hampshire, operated by the Granite YMCA.",
+  "website": "https://www.graniteymca.org/camps/",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "ymca-camp-hanes",
@@ -107376,6 +109624,150 @@
   "verified": false
  },
  {
+  "slug": "ymca-day-camp-fort-meigs-ymca",
+  "name": "YMCA Day Camp @ Fort Meigs YMCA",
+  "type": "day",
+  "city": "Perrysburg",
+  "state": "OH",
+  "region": "midwest",
+  "lat": 40.1,
+  "lng": -82.86,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-operated day camp in Perrysburg, Ohio, affiliated with the YMCA of Greater Toledo.",
+  "website": "http://www.ymcatoledo.org/locations/fort-meigs/fort-meigs-ymca-center-for-health-promotion/",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "ymca-day-camp-francis-ymca",
+  "name": "YMCA Day Camp @ Francis YMCA",
+  "type": "day",
+  "city": "Temperance",
+  "state": "MI",
+  "region": "midwest",
+  "lat": 42.85,
+  "lng": -84.8,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-operated day camp located in Temperance, Michigan, affiliated with the YMCA of Greater Toledo.",
+  "website": "http://www.ymcatoledo.org/locations/francis/francis-family-ymca/",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "ymca-day-camp-sylvania-jcc-ymca",
+  "name": "YMCA Day Camp @ Sylvania JCC YMCA",
+  "type": "day",
+  "city": "Sylvania",
+  "state": "OH",
+  "region": "midwest",
+  "lat": 40.58,
+  "lng": -85.32,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-operated day camp located at the Sylvania JCC YMCA in Ohio, offering traditional day camp programming for local children.",
+  "website": "http://www.ymcatoledo.org/locations/jcc/sylvania-ymca-jcc/",
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "ymca-liberty-township-powell-day-camps",
+  "name": "YMCA Liberty Township/Powell Day Camps",
+  "type": "day",
+  "city": "Powell",
+  "state": "OH",
+  "region": "midwest",
+  "lat": 40.35,
+  "lng": -83.5,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "christian",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-operated day camp in Powell, Ohio, offering traditional summer day programming for local children.",
+  "website": "http://daycamp.ymcacolumbus.org",
+  "claimed": false,
+  "verified": false
+ },
+ {
   "slug": "ymca-of-central-westchester-camp",
   "name": "YMCA of Central & Northern Westchester Camp",
   "type": "day",
@@ -107416,6 +109808,42 @@
   "website": "",
   "rating": 4.3,
   "reviewCount": 20,
+  "claimed": false,
+  "verified": false
+ },
+ {
+  "slug": "ymca-pickaway-county-day-camps",
+  "name": "YMCA Pickaway County Day Camps",
+  "type": "day",
+  "city": "Circleville",
+  "state": "OH",
+  "region": "midwest",
+  "lat": 40.18,
+  "lng": -84.28,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A YMCA-operated day camp in Circleville, Ohio, offering general day camp programming for local youth.",
+  "website": "http://ymcacolumbus.org/pickaway/index.php",
   "claimed": false,
   "verified": false
  },
@@ -107953,6 +110381,43 @@
   "claimed": false,
   "verified": false,
   "ownership": "agency"
+ },
+ {
+  "slug": "young-peoples-camp-suffolk-co",
+  "name": "Young People's Camp - Suffolk Co",
+  "type": "day",
+  "city": "Central Islip",
+  "state": "NY",
+  "region": "northeast",
+  "lat": 41.78,
+  "lng": -74.24,
+  "ageMin": 7,
+  "ageMax": 15,
+  "gender": "coed",
+  "sessionWeeks": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "tuitionMin": 1500,
+  "tuitionMax": 2700,
+  "size": 200,
+  "founded": 1972,
+  "interests": [
+   "outdoor-adventure"
+  ],
+  "vibe": 3,
+  "competitiveness": 2,
+  "structure": 3,
+  "religious": "none",
+  "supports": [],
+  "firstTimeFriendly": true,
+  "acaAccredited": true,
+  "description": "A coed day camp in Central Islip, NY, operated by Young People's Day Camps since 1972.",
+  "website": "http://youngpeoplesdaycamp.com/",
+  "claimed": false,
+  "verified": false
  },
  {
   "slug": "young-peoples-day-camp",
