@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Camp Matching palette — direction 1c "Warm Graphic Remix" */
-  --color-cream: #f7f1e4;
-  --color-cream-dark: #efe5d0;
-  --color-ink: #1e3b2c;
-  --color-ink-soft: #697b6c;
-  --color-pine: #1e3b2c;
-  --color-pine-deep: #152b20;
-  --color-pine-light: #e7efe4;
-  --color-ember: #de6b48;
-  --color-ember-deep: #c5532c;
-  --color-gold: #e4a93c;
-  --color-sky: #8ecbc2;
-  --color-sky-deep: #3f8f84;
+  /* Camp Matching palette — "Heritage Club" luxury direction:
+     hunter green, champagne gold, claret, ivory */
+  --color-cream: #f8f5ee;
+  --color-cream-dark: #efe9dc;
+  --color-ink: #1c2823;
+  --color-ink-soft: #6e7a70;
+  --color-pine: #0f2f23;
+  --color-pine-deep: #0a2118;
+  --color-pine-light: #e8ede5;
+  --color-ember: #7c2d3a;
+  --color-ember-deep: #611f2b;
+  --color-gold: #c0a062;
+  --color-sky: #a9bdb1;
+  --color-sky-deep: #4e6e5d;
 
-  --font-display: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
-  --font-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-body: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-lift: 0 6px 24px rgb(30 59 44 / 0.08);
-  --shadow-lift-lg: 0 20px 50px rgb(30 59 44 / 0.18);
+  --shadow-lift: 0 6px 24px rgb(15 47 35 / 0.08);
+  --shadow-lift-lg: 0 20px 50px rgb(15 47 35 / 0.16);
 }
 
 html {
@@ -39,7 +40,7 @@ h1, h2, h3, .font-display {
 
 ::selection {
   background: var(--color-gold);
-  color: var(--color-ink);
+  color: var(--color-pine-deep);
 }
 
 @keyframes rise {
@@ -78,16 +79,16 @@ h1, h2, h3, .font-display {
 }
 
 .camp-pin svg {
-  filter: drop-shadow(0 2px 3px rgb(34 48 31 / 0.35));
+  filter: drop-shadow(0 2px 3px rgb(10 33 24 / 0.35));
 }
 
-/* subtle paper grain on hero surfaces */
+/* whisper of linen texture on hero surfaces */
 .grain::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.5;
-  background-image: radial-gradient(rgb(34 48 31 / 0.05) 1px, transparent 1px);
+  opacity: 0.35;
+  background-image: radial-gradient(rgb(15 47 35 / 0.05) 1px, transparent 1px);
   background-size: 22px 22px;
 }

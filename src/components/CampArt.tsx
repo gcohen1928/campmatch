@@ -7,18 +7,18 @@ import type { Camp } from "@/lib/types";
  * canoe, adventure camps get bigger peaks, arts camps get bunting, etc.
  */
 const PALETTES: [string, string, string][] = [
-  ["#1e4d3a", "#3f8f84", "#f2b84b"],
-  ["#14532d", "#e96d3f", "#f7d08a"],
-  ["#155e63", "#8ecbc2", "#f2b84b"],
-  ["#3a5a40", "#a3b18a", "#e9c46a"],
-  ["#264653", "#2a9d8f", "#e76f51"],
-  ["#40531b", "#7ca982", "#f4a259"],
-  ["#1d3557", "#457b9d", "#f1af5f"],
-  ["#4a2545", "#905e96", "#f2b84b"],
-  ["#2f3e46", "#84a98c", "#f2cc8f"],
-  ["#432818", "#99582a", "#ffe6a7"],
-  ["#0b525b", "#489fb5", "#ffa62b"],
-  ["#31572c", "#90a955", "#ecf39e"],
+  ["#1e3a2c", "#5f7d6a", "#c8a55e"],
+  ["#14302a", "#4e7368", "#d0b075"],
+  ["#233947", "#5c7c8c", "#c29b58"],
+  ["#3a4a3a", "#8a9a80", "#cbb27b"],
+  ["#2b3a44", "#587a7a", "#c08e52"],
+  ["#3c4522", "#7e8f68", "#d0aa5e"],
+  ["#1f2f4a", "#4c6787", "#c7a05a"],
+  ["#3d2836", "#7c5a72", "#c9a45c"],
+  ["#2e3c40", "#7d968a", "#d2b581"],
+  ["#3a2a1c", "#8a6a45", "#e0c58f"],
+  ["#123f45", "#4f8a92", "#c9a45c"],
+  ["#2f4526", "#7e9457", "#d6c084"],
 ];
 
 function hash(str: string): number {
@@ -53,7 +53,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
       <defs>
         <linearGradient id={`sky-${camp.slug}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={mid} stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#f7f1e4" />
+          <stop offset="100%" stopColor="#f8f5ee" />
         </linearGradient>
       </defs>
       <rect width="400" height="225" fill={`url(#sky-${camp.slug})`} />
@@ -71,7 +71,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
       />
       {/* snow caps on adventure-camp peaks */}
       {hasPeaks && (
-        <g fill="#fbf7ef" opacity="0.9">
+        <g fill="#f6f1e6" opacity="0.9">
           <path d={`M${90 - ridgeShift} ${70 - peakLift} l10 12 l-8 2 l-6 4 l-6 -4 l-8 -2 Z`} />
           <path d={`M${270 + ridgeShift} ${62 - peakLift} l10 12 l-8 2 l-6 4 l-6 -4 l-8 -2 Z`} />
         </g>
@@ -117,7 +117,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
       )}
       {/* tent */}
       <g transform={`translate(${175 + (h % 30)} 160)`}>
-        <path d="M0 46 L28 0 L56 46 Z" fill="#f7f1e4" />
+        <path d="M0 46 L28 0 L56 46 Z" fill="#f8f5ee" />
         <path d="M28 0 L56 46 H42 L28 18 Z" fill={sun} opacity="0.85" />
         <path d="M28 18 L38 46 H18 Z" fill={deep} opacity="0.75" />
         {/* pennant flag */}
@@ -132,7 +132,7 @@ export function CampArt({ camp, className = "" }: { camp: Camp; className?: stri
             <path
               key={x}
               d={`M${x} ${99 + i * 2 - Math.abs(2.5 - i) * 3} l5 10 l5 -11 Z`}
-              fill={i % 2 ? sun : "#fbf7ef"}
+              fill={i % 2 ? sun : "#f6f1e6"}
               opacity="0.9"
             />
           ))}

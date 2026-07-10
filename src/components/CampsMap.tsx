@@ -14,8 +14,8 @@ function pinIcon(color: string) {
   return L.divIcon({
     className: "camp-pin",
     html: `<svg width="30" height="38" viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 37C15 37 28 23.6 28 14A13 13 0 1 0 2 14c0 9.6 13 23 13 23Z" fill="${color}" stroke="#fbf7ef" stroke-width="2"/>
-      <path d="M15 8.5 21 19H9L15 8.5Z" fill="#fbf7ef"/>
+      <path d="M15 37C15 37 28 23.6 28 14A13 13 0 1 0 2 14c0 9.6 13 23 13 23Z" fill="${color}" stroke="#f8f5ee" stroke-width="2"/>
+      <path d="M15 5.5c.9 4 3.6 6.7 7.5 7.5-3.9.8-6.6 3.5-7.5 7.5-.9-4-3.6-6.7-7.5-7.5 3.9-.8 6.6-3.5 7.5-7.5Z" fill="#c0a062"/>
     </svg>`,
     iconSize: [30, 38],
     iconAnchor: [15, 37],
@@ -24,8 +24,8 @@ function pinIcon(color: string) {
 }
 
 const ICONS = {
-  sleepaway: pinIcon("#1e4d3a"),
-  day: pinIcon("#e96d3f"),
+  sleepaway: pinIcon("#0f2f23"),
+  day: pinIcon("#7c2d3a"),
 };
 
 function FitToCamps({ camps }: { camps: Camp[] }) {

@@ -15,7 +15,7 @@ const STEPS = [
   },
   {
     title: "We play matchmaker",
-    body: "Every camp scored across a dozen compatibility dimensions — the way a dating app scores profiles.",
+    body: "Every camp scored across a dozen compatibility dimensions — the way a seasoned matchmaker weighs an introduction.",
   },
   {
     title: "Meet your matches",
@@ -111,9 +111,9 @@ export default function Home() {
       {/* Hero */}
       <section className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 pb-16 pt-10 sm:px-6 lg:px-12 lg:grid-cols-[1.15fr_1fr] lg:pb-22 lg:pt-16">
         <div className="animate-rise">
-          <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/12 bg-white px-[18px] py-2 text-[13px] font-semibold">
-            <span className="h-2 w-2 rounded-full bg-ember" aria-hidden />
-            Match.com for summer camps
+          <p className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-gold/50 bg-white px-[18px] py-2 text-[11.5px] font-semibold uppercase tracking-[0.16em]">
+            <span className="h-1.5 w-1.5 rotate-45 bg-gold" aria-hidden />
+            Private matchmaking for summer camps
           </p>
           <h1 className="mb-7 font-display text-[44px] font-medium leading-[1.04] tracking-[-0.02em] sm:text-[56px] lg:text-[72px]">
             Find the camp your kid was <span className="italic text-ember">made for.</span>
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-3.5">
             <Link
               href="/quiz"
-              className="rounded-full bg-pine px-[34px] py-[19px] text-[15px] font-semibold text-cream shadow-[0_12px_28px_rgba(30,59,44,0.28)] transition-colors hover:bg-ember"
+              className="rounded-full bg-pine px-[34px] py-[19px] text-[15px] font-semibold text-cream shadow-[0_12px_28px_rgba(15,47,35,0.28)] transition-colors hover:bg-ember"
             >
               Take the questionnaire →
             </Link>
@@ -137,7 +137,7 @@ export default function Home() {
             </Link>
           </div>
           <p className="mt-7 text-[13px] text-ink/55">
-            {sleepaway} sleepaway camps · {day} day camps · free for parents
+            {sleepaway} sleepaway camps · {day} day camps · complimentary for families
           </p>
         </div>
         <div className="relative h-[420px] animate-rise sm:h-[560px]" style={{ animationDelay: "120ms" }}>
@@ -154,15 +154,15 @@ export default function Home() {
             <div className="mb-3 h-[7px] rounded-full bg-ink/10">
               <div
                 className="h-full w-[96%] rounded-full"
-                style={{ background: "linear-gradient(90deg, #de6b48, #e4a93c)" }}
+                style={{ background: "linear-gradient(90deg, var(--color-ember), var(--color-gold))" }}
               />
             </div>
             <p className="text-[13px] leading-[1.5] text-ink/70">
               &ldquo;Loves the water, thrives in all-girls settings, ready for 7 weeks.&rdquo;
             </p>
           </div>
-          <div className="absolute -left-2 top-9 rounded-full bg-pine px-[22px] py-3 text-[13.5px] font-semibold text-cream shadow-[0_12px_30px_rgba(30,59,44,0.3)]">
-            It&apos;s a match ✦
+          <div className="absolute -left-2 top-9 rounded-full bg-pine px-[22px] py-3 text-[13.5px] font-semibold text-cream shadow-[0_12px_30px_rgba(15,47,35,0.3)]">
+            It&apos;s a match <span className="text-gold">✦</span>
           </div>
         </div>
       </section>
@@ -172,7 +172,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-12">
           <div className="mb-14 flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
             <h2 className="font-display text-[32px] font-medium sm:text-[46px]">
-              Dating-app matching. Camp-mom wisdom.
+              Matchmaking precision. White-glove care.
             </h2>
             <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
               How it works
@@ -226,7 +226,7 @@ export default function Home() {
       {/* Featured camps */}
       <section className="mx-auto max-w-[1240px] px-4 pb-22 pt-4 sm:px-6 lg:px-12">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
-          <h2 className="font-display text-[32px] font-medium sm:text-[42px]">Camps on Camp Matching</h2>
+          <h2 className="font-display text-[32px] font-medium sm:text-[42px]">From the collection</h2>
           <Link
             href="/camps"
             className="self-start rounded-full border border-ink/14 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-cream-dark"
@@ -249,7 +249,7 @@ export default function Home() {
               Ready to meet <span className="italic text-gold">your matches?</span>
             </h2>
             <p className="text-base text-cream/70">
-              Free for parents. Three minutes. One unforgettable summer.
+              Complimentary for families. Three minutes. One extraordinary summer.
             </p>
           </div>
           <Link

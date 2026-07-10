@@ -20,7 +20,7 @@ export default function HowItWorksPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-        Like a dating app, <span className="text-ember">for camp.</span>
+        Matchmaking, <span className="italic text-ember">for camp.</span>
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-soft">
         Camp directories give you a phone book. We give you an introduction.

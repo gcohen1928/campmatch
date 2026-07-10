@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import { Newsreader, Archivo } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import { Header, Footer } from "@/components/SiteChrome";
 import "./globals.css";
 
-const newsreader = Newsreader({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-newsreader",
+  variable: "--font-cormorant",
   style: ["normal", "italic"],
-  axes: ["opsz"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const archivo = Archivo({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-jost",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Camp Matching — Find the summer camp your kid was made for",
+    default: "Camp Matching — Exceptional summer camps, expertly matched",
     template: "%s · Camp Matching",
   },
   description:
-    "Match.com for summer camps. Answer a 3-minute questionnaire about your child and get matched with the sleepaway and day camps across the USA where they'll thrive.",
+    "A discerning matchmaking service for summer camps. Answer a refined 3-minute questionnaire about your child and receive a curated shortlist of the sleepaway and day camps where they'll truly thrive.",
   openGraph: {
-    title: "Camp Matching — Find the summer camp your kid was made for",
+    title: "Camp Matching — Exceptional summer camps, expertly matched",
     description:
-      "Answer a 3-minute questionnaire and get matched with the perfect sleepaway or day camp.",
+      "Answer a refined 3-minute questionnaire and receive a curated shortlist of exceptional sleepaway and day camps.",
     type: "website",
   },
 };
@@ -34,7 +34,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>

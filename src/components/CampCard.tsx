@@ -12,7 +12,7 @@ export function RatingBadge({ camp, className = "" }: { camp: Camp; className?: 
   if (camp.rating === undefined) return null;
   return (
     <span className={`inline-flex items-center gap-1 text-xs font-semibold text-ink ${className}`}>
-      <span aria-hidden className="text-ember">★</span>
+      <span aria-hidden className="text-gold">★</span>
       {camp.rating.toFixed(1)}
       {camp.reviewCount ? (
         <span className="font-normal text-ink-soft">({camp.reviewCount})</span>
@@ -93,7 +93,7 @@ export function CampCard({
             <ul className="mt-3 space-y-1.5">
               {match.reasons.slice(0, 2).map((r) => (
                 <li key={r.label} className="flex items-start gap-1.5 text-[13px] leading-snug text-ink-soft">
-                  <span className={r.strength === "great" ? "text-ember" : "text-sky-deep"}>
+                  <span className={r.strength === "great" ? "text-gold" : "text-sky-deep"}>
                     {r.strength === "great" ? "★" : "✦"}
                   </span>
                   <span><strong className="font-semibold text-ink">{r.label}.</strong> {r.detail}</span>

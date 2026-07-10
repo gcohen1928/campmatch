@@ -1,24 +1,34 @@
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden>
-      {/* tent */}
-      <path d="M24 8 5 40h14l5-9 5 9h14L24 8Z" fill="currentColor" opacity="0.9" />
-      {/* heart doorway */}
+      {/* outer diamond seal */}
+      <path d="M24 3 45 24 24 45 3 24Z" stroke="currentColor" strokeWidth="2" />
+      {/* inner hairline diamond */}
+      <path d="M24 8 40 24 24 40 8 24Z" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+      {/* champagne four-point star */}
       <path
-        d="M24 27.5c1.1-2.2 4.4-2.1 4.4.6 0 1.9-2.6 4.3-4.4 5.6-1.8-1.3-4.4-3.7-4.4-5.6 0-2.7 3.3-2.8 4.4-.6Z"
-        fill="#e4a93c"
+        d="M24 14c1.1 5.3 4.7 8.9 10 10-5.3 1.1-8.9 4.7-10 10-1.1-5.3-4.7-8.9-10-10 5.3-1.1 8.9-4.7 10-10Z"
+        fill="#c0a062"
       />
     </svg>
   );
 }
 
+export function Wordmark({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`font-display text-[19px] font-semibold uppercase leading-none tracking-[0.2em] ${className}`}
+    >
+      Camp&nbsp;Matching
+    </span>
+  );
+}
+
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <span className={`flex items-center gap-2 ${light ? "text-cream" : "text-pine"}`}>
+    <span className={`flex items-center gap-3 ${light ? "text-cream" : "text-pine"}`}>
       <LogoMark className="h-8 w-8" />
-      <span className="font-display text-xl font-semibold tracking-tight">
-        Camp Matching
-      </span>
+      <Wordmark />
     </span>
   );
 }
