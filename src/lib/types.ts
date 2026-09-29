@@ -150,6 +150,38 @@ export interface Camp {
   /** neighborhoods / regions covered by trunk pickup */
   trunkPickupAreas?: string[];
   rookieDay?: RookieDay;
+
+  /* ── Researched logistics (see src/lib/field-rules.ts for which apply
+   * to which camp type) ──────────────────────────────────────────────── */
+
+  /** full street address, as published by the camp */
+  address?: string;
+  /** day camps: before/after care offered */
+  extendedCare?: boolean;
+  /** day camps: lunch provided in tuition */
+  lunchIncluded?: boolean;
+}
+
+export type SourceConfidence = "high" | "medium" | "low";
+
+/** Where one researched value came from. Values without one are estimates. */
+export interface FieldSource {
+  url: string;
+  /** short excerpt from the page supporting the value */
+  quote?: string;
+  confidence: SourceConfidence;
+  /** e.g. "2027 rates" */
+  note?: string;
+  /** ISO date the page was checked */
+  checkedAt: string;
+}
+
+/** Research record for one camp, kept server-side in src/data/camp-sources.json. */
+export interface CampSources {
+  checkedAt: string;
+  fields: Partial<Record<keyof Camp, FieldSource>>;
+  /** problems found with the listing (wrong city, closed, not a summer camp…) */
+  issues?: string[];
 }
 
 export type EatingHabits = "adventurous" | "typical" | "picky" | "very-picky";
